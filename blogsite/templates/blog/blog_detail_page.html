@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% load wagtailimages_tags wagtailcore_tags%}
+
+{% block content %}
+
+        <!-- content
+   ================================================== -->
+    <section id="content-wrap" class="blog-single">
+        <div class="row">
+            <div class="col-twelve">
+
+                <article class="format-standard">
+                    <div class="content-media">
+						<div class="post-thumb">
+                            {% image self.main_image original as blog_img %}
+							<img src="{{blog_img.url}}"alt="{{self.blog_title}}"> 
+						</div>  
+                    </div>
+                    <div class="primary-content">
+
+                        <h1 class="page-title">{{self.custom_title}}</h1>	
+                        <ul class="entry-meta">
+                            <li class="date">Created: {{self.create_date}}</li>
+                            <li class="date">Updated: {{self.update_date}}</li>	
+                            {% for tag in self.tags.all %}
+                                <li class="cat"><a href="{%slugurl 'tags' %}?tag={{ tag }}">{{tag}},</a></li>
+                            {% endfor %}
+                        </ul>				                  		
+						<p class="lead">
+                            {{self.intro|safe}}
+                        </p>
+                        <p>
+                            {% for block in self.content %}
+                                {% include_block block %}
+                            {% endfor %}
+                        </p>
+                    </div>	
+                    <div class="pagenav group">
+		  			    <div class="prev-nav">
+                            {% if self.prev %}
+                                <a href="{{ self.prev.url}}" rel="prev">
+                                    <span>Previous</span>
+                                    {{self.prev.title}}		  			   		         
+                                </a>
+                            {% else %}
+                                <a href=""><span>Previous</span>
+                                    已是第一篇</a>
+                            {% endif %}
+		  			    </div>
+                        <div class="next-nav">
+                            {% if self.next%}
+                                <a href="{{ self.next.url }}" rel="next">
+                                    <span>Next</span> {{self.next.title}}
+                                </a>
+                            {% else %}
+                                <a href=""><span>Next</span>
+                                已是最后一篇</a>
+                            {% endif %} 
+                        </div>   
+		  			    				   
+	  				</div>
+	
+
+				</article>
+   		
+
+			</div> <!-- end col-twelve -->
+        </div> <!-- end row -->		
+    </section> <!-- end content -->
+{% endblock %}
