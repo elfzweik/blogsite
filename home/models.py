@@ -10,7 +10,7 @@ class HomePage(Page):
     template = "home/home_page.html"
 
     banner_title = models.CharField (max_length=100, blank=False, null=True)
-    banner_subtitle = RichTextField ()
+    banner_subtitle = models.CharField (max_length=200, blank=False, null=True)
     banner_image = models.ForeignKey(
         "wagtailimages.Image",
         null = True,
@@ -19,19 +19,14 @@ class HomePage(Page):
         related_name = "+",
     )
     
-    banner_cta = models.ForeignKey(
-        "wagtailcore.Page",
-        null = True,
-        blank = True,
-        on_delete = models.SET_NULL,
-        related_name = "+",
-    )
+    banner_text = RichTextField()
+    
     
     content_panels = Page.content_panels + [
         FieldPanel("banner_title"),
         FieldPanel("banner_subtitle"),
         ImageChooserPanel("banner_image"),
-        PageChooserPanel("banner_cta")
+        FieldPanel("banner_text"),
     ]
 
     class Meta:

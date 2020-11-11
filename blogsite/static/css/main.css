@@ -68,7 +68,7 @@ body {
 
 body {
 	background: #f5f5f5;
-	font-family: "roboto-regular", sans-serif;
+	font-family: "roboto-regular", sans-serif, KaiTi;
 	font-size: 1.7rem;
 	line-height: 3rem;
 	color: #111111;
@@ -99,7 +99,8 @@ a:focus {
  *
  * ------------------------------------------------------------------- */
 h1, h2, h3, h4, h5, h6, .h01, .h02, .h03, .h04, .h05, .h06 {
-	font-family: "montserrat-bold", sans-serif;
+	font-family: "montserrat", sans-serif, HeiTi;
+	font-weight: bold;
 	color: #151515;
 	font-style: normal;
 	text-rendering: optimizeLegibility;
@@ -151,7 +152,7 @@ p img {
 	margin: 0;
 }
 p.lead {
-	font-family: 'roboto-light', sans-serif;
+	font-family: 'roboto-light', sans-serif, KaiTi;
 	font-size: 2.4rem;
 	line-height: 1.8;
 	color: #373737;
@@ -176,10 +177,11 @@ em, i, strong, b {
 	font-weight: normal;
 }
 em, i {
-	font-family: 'roboto-italic', sans-serif;
+	font-family: 'roboto-italic', sans-serif, KaiTi;
 }
 strong, b {
-	font-family: 'roboto-bold', sans-serif;
+	font-family: 'roboto-bold', sans-serif, KaiTi;
+	font-weight: bold;
 }
 small {
 	font-size: 1.1rem;
@@ -202,14 +204,14 @@ blockquote:before {
 	left: 0;
 }
 blockquote p {
-	font-family: "roboto-light", sans-serif;
+	font-family: "roboto-light", sans-serif, KaiTi;
 	padding: 0;
 	font-size: 2.2rem;
 	line-height: 1.75;
 }
 blockquote cite {
 	display: block;
-	font-family: "muli-regular", sans-serif;
+	font-family: "muli-regular", sans-serif, KaiTi;
 	font-size: 1.4rem;
 	font-style: normal;
 	line-height: 1.714;
@@ -222,14 +224,15 @@ blockquote cite a, blockquote cite a:visited {
 	border: none;
 }
 abbr {
-	font-family: "roboto-bold", sans-serif;
+	font-family: "roboto-bold", sans-serif, KaiTi;
+	font-weight: bold;
 	font-variant: small-caps;
 	text-transform: lowercase;
 	letter-spacing: .05rem;
 	color: #2b2b2b;
 }
 var, kbd, samp, code, pre {
-	font-family: Consolas, "Andale Mono", Courier, "Courier New", monospace;
+	font-family: Consolas, "Andale Mono", Courier, "Courier New", monospace, KaiTi;
 }
 pre {
 	padding: 2.4rem 3rem 3rem;
@@ -414,7 +417,7 @@ table {
 	border-width: 0;
 	width: 100%;
 	max-width: 100%;
-	font-family: "roboto-regular", sans-serif;
+	font-family: "roboto-regular", sans-serif, KaiTi;
 }
 
 th,
@@ -426,7 +429,8 @@ td {
 
 th {
 	color: #151515;
-	font-family: "montserrat-bold", sans-serif;
+	font-family: "montserrat-bold", sans-serif, KaiTi;
+	font-weight: bold;
 }
 
 td {
@@ -569,7 +573,7 @@ select {
 	outline: none;
 	vertical-align: middle;
 	color: rgba(0, 0, 0, 0.7);
-	font-family: "roboto-regular", sans-serif;
+	font-family: "roboto-regular", sans-serif, KaiTi;
 	font-size: 1.5rem;
 	line-height: 3rem;
 	max-width: 100%;
@@ -650,7 +654,8 @@ select:focus {
 
 label,
 legend {
-	font-family: "montserrat-bold", sans-serif;
+	font-family: "montserrat-bold", sans-serif, HeiTi;
+	font-weight: bold;
 	font-size: 1.4rem;
 	margin-bottom: .6rem;
 	color: black;
@@ -665,7 +670,7 @@ input[type="radio"] {
 label > .label-text {
 	display: inline-block;
 	margin-left: 1rem;
-	font-family: "roboto-regular", sans-serif;
+	font-family: "roboto-regular", sans-serif, KaiTi;
 	line-height: inherit;
 }
 
@@ -711,7 +716,7 @@ input[type="submit"],
 input[type="reset"],
 input[type="button"] {
 	display: inline-block;
-	font-family: "montserrat-regular", sans-serif;
+	font-family: "montserrat-regular", sans-serif, HeiTi;
 	font-size: 1.4rem;
 	text-transform: uppercase;
 	letter-spacing: .3rem;
@@ -835,7 +840,7 @@ input::-moz-focus-inner {
 	position: relative;
 	margin-bottom: 3rem;
 	border-radius: 3px;
-	font-family: "roboto-regular", sans-serif;
+	font-family: "roboto-regular", sans-serif, KaiTi;
 	font-size: 1.5rem;
 }
 
@@ -877,7 +882,8 @@ input::-moz-focus-inner {
 	margin: 0;
 	padding: 1.5rem .6rem 0 0;
 	font-size: 8.4rem;
-	font-family: 'roboto-bold', sans-serif;
+	font-family: 'roboto-bold', sans-serif, KaiTi;
+	font-weight: bold;
 	line-height: 6rem;
 	text-indent: 0;
 	background: transparent;
@@ -954,7 +960,7 @@ input::-moz-focus-inner {
 	height: 1em;
 	position: absolute;
 	font-size: 10rem;
-	font-family: Arial, Sans-Serif;
+	font-family: Arial, Sans-Serif, KaiTi;
 	color: rgba(0, 0, 0, 0.2);
 }
 
@@ -1011,7 +1017,8 @@ input::-moz-focus-inner {
 .stats-tabs li a {
 	display: inline-block;
 	font-size: 2.5rem;
-	font-family: "roboto-bold", sans-serif;
+	font-family: "roboto-bold", sans-serif, KaiTi;
+	font-weight: bold;
 	border: none;
 	color: #333333;
 }
@@ -1024,7 +1031,7 @@ input::-moz-focus-inner {
 	display: block;
 	margin: .6rem 0 0 0;
 	font-size: 1.4rem;
-	font-family: "roboto-regular", sans-serif;
+	font-family: "roboto-regular", sans-serif, KaiTi;
 	color: #888888;
 }
 
@@ -1043,7 +1050,8 @@ input::-moz-focus-inner {
 }
 
 .pagination .page-numbers {
-	font-family: "montserrat-bold", sans-serif;
+	font-family: "montserrat-bold", sans-serif, HeiTi;
+	font-weight: bold;
 	font-size: 15px;
 	line-height: 24px;
 	display: inline-block;
@@ -1139,7 +1147,7 @@ input::-moz-focus-inner {
 
 .bricks-wrapper .entry-thumb .thumb-link::after {
 	content: "...";
-	font-family: georgia, serif;
+	font-family: georgia, serif, KaiTi;
 	font-size: 4.5rem;
 	z-index: 1;
 	display: block;
@@ -1201,7 +1209,7 @@ input::-moz-focus-inner {
 }
 
 .bricks-wrapper .entry-header .entry-meta {
-	font-family: "muli-regular", sans-serif;
+	font-family: "muli-regular", sans-serif, KaiTi;
 	font-size: 1.5rem;
 	margin-bottom: 1.2rem;
 }
@@ -1282,7 +1290,7 @@ input::-moz-focus-inner {
 }
 
 .featured-post-slide .entry-meta {
-	font-family: "muli-regular", sans-serif;
+	font-family: "muli-regular", sans-serif, KaiTi;
 	margin: -3rem 0 0.9rem 0;
 	color: rgba(255, 255, 255, 0.6);
 	line-height: 1.412;
@@ -1305,7 +1313,8 @@ input::-moz-focus-inner {
 }
 
 .featured-post-slide .slide-title {
-	font-family: "montserrat-bold", sans-serif;
+	font-family: "montserrat-bold", sans-serif, HeiTi;
+	font-weight: bold;
 	font-size: 3.8rem;
 	line-height: 1.421;
 	margin-bottom: 3rem;
@@ -1476,7 +1485,8 @@ input::-moz-focus-inner {
 
 .format-quote blockquote p,
 .format-link .link-wrap p {
-	font-family: "montserrat-bold", sans-serif;
+	font-family: "montserrat-bold", sans-serif, HeiTi;
+	font-weight: bold;
 	padding: 6rem 0 0 0;
 	font-size: 2.2rem;
 	line-height: 1.636;
@@ -1485,7 +1495,7 @@ input::-moz-focus-inner {
 .format-quote cite,
 .format-link cite {
 	display: block;
-	font-family: "muli-regular", sans-serif;
+	font-family: "muli-regular", sans-serif, KaiTi;
 	font-size: 1.5rem;
 	font-style: normal;
 	line-height: 1.4;
@@ -1626,10 +1636,6 @@ header .logo a {
 #capital-list{
 	list-style-type: none;
 }
-#capital-text{
-	float: left !important;
-	font-family: 金梅印篆體 !important;
-}
 
 /* responsive:
  * header logo
@@ -1713,7 +1719,7 @@ header .logo a {
 	display: table;
 	float: right;
 	padding-right: 85px;
-	font-family: "montserrat-regular", sans-serif;
+	font-family: "montserrat-regular", sans-serif, HeiTi;
 	font-size: 15px;
 	height: 78px;
 }
@@ -1754,7 +1760,8 @@ header .logo a {
 .main-navigation li.current > a {
 	border-bottom: 2px solid #151515;
 	color: #000000;
-	font-family: "montserrat-bold", sans-serif;
+	font-family: "montserrat-bold", sans-serif, HeiTi;
+	font-weight: bold;
 }
 
 .main-navigation ul {
@@ -1795,7 +1802,7 @@ header .logo a {
 .main-navigation ul li a {
 	white-space: nowrap;
 	padding: 16.5px 25px;
-	font-family: "muli-regular", sans-serif;
+	font-family: "muli-regular", sans-serif, KaiTi;
 	font-size: 14px;
 	line-height: 15px;
 	display: block;
@@ -2129,7 +2136,8 @@ header .logo a {
 	color: #000;
 	height: auto;
 	width: 100%;
-	font-family: "montserrat-bold", sans-serif;
+	font-family: "montserrat-bold", sans-serif, HeiTi;
+	font-weight: bold;
 	font-size: 6.3rem;
 	line-height: 1.523;
 	letter-spacing: 0.02rem;
@@ -2550,7 +2558,8 @@ footer ul li {
 }
 
 .footer-main .footer-subscribe .subscribe-form .subscribe-message {
-	font-family: "roboto-bold", sans-serif;
+	font-family: "roboto-bold", sans-serif, KaiTi;
+	font-weight: bold;
 	font-size: 1.4rem;
 	color: #000000;
 }
@@ -2715,7 +2724,7 @@ footer ul li {
 /* single post - (_blog.scss) 
  * ------------------------------------------------------------------- */
 .blog-single .entry-meta {
-	font-family: "muli-regular", sans-serif;
+	font-family: "muli-regular", sans-serif, KaiTi;
 	font-size: 1.5rem;
 	list-style: none;
 	margin-left: 0;
@@ -2760,7 +2769,8 @@ footer ul li {
 	color: #151515;
 	margin-right: 1rem;
 	font-size: 1.5rem;
-	font-family: "montserrat-bold", sans-serif;
+	font-family: "montserrat-bold", sans-serif, HeiTi;
+	font-weight: bold;
 }
 
 .blog-single .tags a {
@@ -2826,7 +2836,8 @@ footer ul li {
 .blog-single .pagenav a {
 	font-size: 2.1rem;
 	line-height: 1.571;
-	font-family: "montserrat-bold", sans-serif;
+	font-family: "montserrat-bold", sans-serif, HeiTi;
+	font-weight: bold;
 	border: none;
 	color: #000000;
 }
@@ -2834,7 +2845,7 @@ footer ul li {
 .blog-single .pagenav a span {
 	font-size: 1.5rem;
 	line-height: 3rem;
-	font-family: "muli-regular", sans-serif;
+	font-family: "muli-regular", sans-serif, KaiTi;
 	display: block;
 	margin-bottom: 1.5rem;
 	color: #999999;
@@ -2939,14 +2950,15 @@ footer ul li {
 }
 
 .commentlist li .comment-info cite {
-	font-family: "montserrat-bold", sans-serif;
+	font-family: "montserrat-bold", sans-serif, HeiTi;
+	font-weight: bold;
 	font-size: 1.8rem;
 	font-style: normal;
 	color: #151515;
 }
 
 .commentlist li .comment-info .comment-meta {
-	font-family: "muli-regular", sans-serif;
+	font-family: "muli-regular", sans-serif, KaiTi;
 	font-size: 1.4rem;
 	line-height: 3rem;
 	display: block;
@@ -2954,7 +2966,8 @@ footer ul li {
 }
 
 .commentlist li .comment-info .comment-meta .reply {
-	font-family: "montserrat-bold", sans-serif;
+	font-family: "montserrat-bold", sans-serif, HeiTi;
+	font-weight: bold;
 	color: #151515;
 }
 

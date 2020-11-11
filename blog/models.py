@@ -164,7 +164,6 @@ class BlogDetailPage(Page):
     def prev(self):
         try:
             previous=self.get_next_sibling()
-            print(previous, previous.title, BlogDetailPage(previous).custom_title)
             return(previous)
         except self.DoesNotExist:
             return(None)
