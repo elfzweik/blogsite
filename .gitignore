@@ -2,4 +2,4 @@ data.json
 _pycache_/
 media/
 static_collected/
-
+db.sqlite3
