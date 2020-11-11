@@ -11,7 +11,7 @@ class FlexPage(Page):
     template = "flex/flex_page.html"
 
     banner_title = models.CharField (max_length=100, blank=False, null=True)
-    banner_subtitle = RichTextField ()
+    banner_subtitle = models.CharField (max_length=100, blank=False, null=True)
     banner_image = models.ForeignKey(
         "wagtailimages.Image",
         null = True,

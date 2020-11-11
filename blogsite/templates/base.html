@@ -40,11 +40,20 @@
         <script src="{% static 'js/pace.min.js' %}"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
         <script type="text/javascript" src="{% static 'js/blogsite.js' %}"></script>
-
+        <script type="text/javascript" src="http://cdn.repository.webfont.com/wwwroot/js/wf/youziku.api.min.js"></script>
+        <script type="text/javascript">
+            $webfont.load(".lishu", "fc9eda1847b04e269e603ca8156e20c4", "ZiYue-Li");
+            $webfont.load(".xinkai", "18fa0737677440b7b79204b62707da7b", "zw2012sjt001");
+            $webfont.load(".yinzhuan", "f5f2d2aef926415ea7bebcd9c855db23", "jdfyinzhuan");
+            /*$webfont.load("#id1,.class1,h1", "8f228909d68742009fe68d7c0b2765de", "LiuMengYin");*/
+            /*．．．*/
+            $webfont.draw();
+        </script>
+        
          <!-- favicons
 	================================================== -->
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-        <link rel="icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="{% static 'favicon.ico'%}" type="image/x-icon">
 
         {% block header %}{% endblock %}
 
@@ -63,14 +72,14 @@
                     <a href="/">朝花</a>
             </div>
             
-            <a href="/"><div style="margin-left: 100px; margin-top: 20px; float:left;" >
-                <img src="{% static 'Clip_20201104_235454.png' %}" alt=""/>	  </div></a>
-            <!--<div style="margin-left: 100px; float:left; max-width: 120px;">
-                <h2>朝花夕拾</h2>
-            </div>-->
+            <!--<a href="/"><div style="margin-left: 100px; margin-top: 20px; float:left;" >
+                <img src="{% static 'Clip_20201104_235454.png' %}" alt=""/>	  </div></a>-->
+            <div style="margin-left: 100px; margin-top: 20px; float:left" >
+                <h1 class="slide-title yinzhuan" style="font-weight: 900;">朝 花 夕 拾</h1>
+            </div>
               
                 <nav id="main-nav-wrap">
-                    <ul class="main-navigation sf-menu">
+                    <ul class="main-navigation sf-menu ">
                         <li>
                             <a href="/">首页</a>
                         </li>
