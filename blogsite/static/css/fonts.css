@@ -8,11 +8,26 @@
 ================================================================================ */
 
 @font-face {
-	font-family: "yinzhuanti";
-	src: url("../fonts/金梅印篆體/金梅印篆體.ttf");
+	font-family: zhuanshu;
+	src: url("../fonts/JinMeiYinZhuanTi.ttf");
 	font-style: normal;
 	font-weight: normal;
 }
+
+@font-face {
+	font-family: lishu;
+	src: url("../fonts/JinMeiXinMaoLiQuanZiTi.ttf");
+	font-style: normal;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: sxt;
+	src: url("../fonts/sxt.ttf");
+	font-style: normal;
+	font-weight: normal;
+}
+
 
 @font-face {
 	font-family: "roboto-light";
