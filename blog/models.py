@@ -40,7 +40,7 @@ class BlogListingPage(Page):
 
     def get_context (self, request, *args, **kwargs):
         context=super().get_context(request, *args, **kwargs)
-        blogpages = BlogDetailPage.objects.live().public().order_by('latest_revision_created_at')
+        blogpages = BlogDetailPage.objects.live().public().order_by('-latest_revision_created_at')
         latest_blogs= blogpages[:5]
         paginator = Paginator(blogpages, 12)
         page_num = request.GET.get('page', 1)
@@ -87,7 +87,7 @@ class BlogTagIndexPage(Page):
 
         # Filter by tag
         tag = request.GET.get('tag')
-        blogpages = BlogDetailPage.objects.filter(tags__name=tag).order_by('latest_revision_created_at')
+        blogpages = BlogDetailPage.objects.filter(tags__name=tag).order_by('-latest_revision_created_at')
         paginator = Paginator(blogpages, 12)
         page_num = request.GET.get('page', 1)
         try:
