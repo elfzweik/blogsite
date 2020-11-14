@@ -1,5 +1,6 @@
 data.json
 _pycache_/
+__pycache__/
 media/
 static_collected/
 db.sqlite3
