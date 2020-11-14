@@ -41,7 +41,7 @@
                             {% if self.prev %}
                                 <a href="{{ self.prev.url}}" rel="prev">
                                     <span>Previous</span>
-                                    {{self.prev.title}}		  			   		         
+                                    {{self.prev.specific.custom_title}}		  			   		         
                                 </a>
                             {% else %}
                                 <a href=""><span>Previous</span>
@@ -51,7 +51,7 @@
                         <div class="next-nav">
                             {% if self.next%}
                                 <a href="{{ self.next.url }}" rel="next">
-                                    <span>Next</span> {{self.next.title}}
+                                    <span>Next</span> {{self.next.specific.custom_title}}
                                 </a>
                             {% else %}
                                 <a href=""><span>Next</span>
