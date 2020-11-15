@@ -192,10 +192,10 @@ class BlogDetailPage(Page):
             FieldPanel('tags'),
             #FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
         ], heading="Blog information"),
-        
+        InlinePanel('gallery_images', label="Gallery images"),
         # FieldPanel('body'),
         StreamFieldPanel('content'),
-        InlinePanel('gallery_images', label="Gallery images"),
+        
     ]
 
     class Meta:

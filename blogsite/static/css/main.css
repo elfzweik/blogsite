@@ -2678,7 +2678,7 @@ footer ul li {
  * ------------------------------------------------------------------- */
 #go-top {
 	position: fixed;
-	bottom: 24px;
+	bottom: 84px;
 	right: 30px;
 	z-index: 700;
 	display: none;
