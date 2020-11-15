@@ -33,17 +33,22 @@
                                 {% for post in latest_posts %}
                                     <li>
                                         <div class="featured-post-slide">
-                                            
                                             {% if post.main_image %} 
                                                 {% image post.main_image width-700 as blog_img %}
-                                                <div class="post-background" style="background-image: url('{{blog_img.url}}') ;"></div>
+                                                    <div class="post-background" style="background-image: url('{{blog_img.url}}') ;"></div>
                                                 {% endif %}
                                             <div class="overlay"></div>			   		
 
                                             <div class="post-content">
                                                 <ul class="entry-meta">
-                                                    <li>Created at {{post.create_date}}</li> 
-                                                    <li><a href="{{post.url}}" >Updated at {{post.update_date}}</a></li>				
+                                                    <li><a href="{{post.url}}" >Updated at {{post.update_date}}</a></li> 
+                                                    <li>
+                                                        <span class="cat-links">
+                                                            {% for tag in post.tags.all %}
+                                                                <a href="{{post.url}}">{{tag}}, </a> 
+                                                            {% endfor %}
+                                                        </span>
+                                                    </li>				
                                                 </ul>	
 
                                                 <h1 class="slide-title"><a href="{{post.url}}" title="">{{post.custom_title}}</a></h1> 
