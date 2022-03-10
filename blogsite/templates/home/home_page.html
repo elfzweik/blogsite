@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content%}
+    {% image self.banner_image fill-1600x240 as img %}
+    <div class="jumbotron" style="background-image: url('{{img.url}}');
+    background-size: cover">
+        <h1 class="slide-title lishu" style="color: white;">{{ self.banner_title }}</h1>
+        <p >
+            <h2 class="sxt" style="color: white;"!important>{{ self.banner_subtitle | safe}}</h2></p>
+    </div>
+    
+    <div class="container_fluid">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2" >
+                <p>
+                    这是对建站技术的一次尝试，总体上我是比较满意的。这个博客比一般大路化的博客网站要漂亮许多，在学习过程中想要实现的一些技术，比如响应式布局（这个网站是可以自适应不同显示尺寸的设备的）、瀑布流布局、Gutenburg编辑器、等等，基本上都实现了。博客内容不多，为了体现瀑布流布局和测试，加入了一些占位显示的，有待以后补充内容，见谅。占位 的文章中我特意加上了一篇"Hey, This Is A Standard Format Post"，文章是原来模板里的样本，各种格式很多，我特意对比了一下，用我的动态实现与原来静态模板基本没有区别，这是比较成功的地方。
+                </p>
+            </div>
+        </div>
+        
+    </div>
+{% endblock %}
