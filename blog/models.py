@@ -206,7 +206,7 @@ class BlogDetailPage(Page):
 class BlogPageGalleryImage(Orderable):
     page = ParentalKey(BlogDetailPage, on_delete=models.CASCADE, related_name='gallery_images')
     image = models.ForeignKey(
-        'wagtailimages.Image', blank=True, on_delete=models.CASCADE, related_name='+'
+        'wagtailimages.Image', blank=False, on_delete=models.CASCADE, related_name='+'
     )
     
 
