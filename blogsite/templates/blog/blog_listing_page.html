@@ -35,7 +35,8 @@
                                         <div class="featured-post-slide">
                                             {% if post.main_image %} 
                                                 {% image post.main_image width-700 as blog_img %}
-                                                    <div class="post-background" style="background-image: url('{{blog_img.url}}') ;"></div>
+                                                    <div class="post-background" style="background-image: url('{{blog_img.url}}'); {{blog_img.background_position_style}}">
+                                                    </div>
                                                 {% endif %}
                                             <div class="overlay"></div>			   		
 
