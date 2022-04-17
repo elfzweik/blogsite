@@ -115,7 +115,7 @@ class BlogTagIndexPage(Page):
 
         # Update template context
         context = super().get_context(request)
-        context['posts'] = blogpage
+        context['posts'] = blogpages
         context['page_range']=page_range
 
         return context
@@ -184,6 +184,7 @@ class BlogDetailPage(Page):
     ]
 
     content_panels = Page.content_panels + [
+        InlinePanel('gallery_images', label="Gallery images"),
         MultiFieldPanel([
             FieldPanel('custom_title'),
             FieldPanel('intro'),
@@ -196,7 +197,7 @@ class BlogDetailPage(Page):
         
         # FieldPanel('body'),
         StreamFieldPanel('content'),
-        InlinePanel('gallery_images', label="Gallery images"),
+        
     ]
 
     class Meta:
