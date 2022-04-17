@@ -46,6 +46,7 @@
                                                     <li>
                                                         <span class="cat-links">
                                                             {% for tag in post.tags.all %}
+                                                                <span class="glyphicon glyphicon-tag"></span>
                                                                 <a href="{{post.url}}">{{tag}}, </a> 
                                                             {% endfor %}
                                                         </span>
