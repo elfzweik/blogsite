@@ -1,5 +1,6 @@
 from django import forms
 from django.db import models
+from django.contrib.auth.models import User
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from ckeditor.fields import RichTextField
 
@@ -126,7 +127,8 @@ class BlogDetailPage(Page):
     template = "blog/blog_detail_page.html"
 
     custom_title = models.CharField('Title', max_length=80, help_text='文章标题')
-    author = models.CharField("Author", max_length=255, default="Wang Zhenxuan")
+    #author = models.CharField("Author", max_length=255, default="Wang Zhenxuan")
+    author = models.ForeignKey(User,on_delete=models.DO_NOTHING)
     create_date = models.DateField("Create date", auto_now_add= True)
     update_date = models.DateField("Update date", auto_now=True)
     intro = RichTextField(max_length=500, help_text='文章简介')
