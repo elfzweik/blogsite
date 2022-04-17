@@ -5,8 +5,10 @@
 {% block content %}
 
     {% if request.GET.tag|length %}
-        <h4>Showing pages tagged "{{ request.GET.tag }}"</h4>
-    {% endif %}
+        <div class="list_title" style="">
+            <h6>Showing pages tagged "{{ request.GET.tag }}", click <a href = "/blog/">here</a> to return </h6>
+        </div>
+    {% endif %} 
    
     <!-- masonry
     ================================================== -->

@@ -64,7 +64,6 @@
                 </div>
                 
                 
-                
                 {% for post in posts %}
                     
                     <article class="brick entry format-standard animate-this">
@@ -84,7 +83,7 @@
                                 <div class="entry-meta">
                                     <span class="cat-links">
                                         {% for tag in post.tags.all %}
-                                            <a href="{%slugurl 'tags' %}?tag={{ tag }}">{{tag}}</a> 
+                                            <a href="{%slugurl 'tags' %}?tag={{ tag }}">{{ tag }}</a> 
                                         {% endfor %} 
                                     </span>			
                                 </div>
