@@ -26,7 +26,7 @@
                             <br>
                             {% for tag in self.tags.all %}
                                 <span class="glyphicon glyphicon-tag"></span>
-                                <li class="cat"><a href="{%slugurl 'tags' %}?tag={{ tag }}">{{tag}},</a></li>
+                                <li class="cat"><a href="{%slugurl 'tags' %}?tag={{ tag }}">{{tag}}</a></li>
                             {% endfor %}
                         </ul>				                  		
 						<p class="lead">
