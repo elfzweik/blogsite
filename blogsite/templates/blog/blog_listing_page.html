@@ -94,12 +94,10 @@
                                 
                             </div>
                                 <div class="entry-excerpt">
-                                    <ul>
-                                        <li>Author: {{post.author.first_name}} {{post.author.last_name}}</li>
-                                        <li>Upated at: {{post.update_date}}</li> 
-                                    </ul>
-                                             				
-                                    
+                                    <span>Author: {{post.author.first_name}} {{post.author.last_name}}</span>
+                                    <br>    
+                                    <span>Upated at: {{post.update_date}}</span>                                       				
+
                                     {{post.intro |safe |truncatechars:140}}
                                 </div>
                         </div>
