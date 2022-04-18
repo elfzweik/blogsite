@@ -126,6 +126,14 @@ class BlogTagIndexPage(Page):
 class BlogDetailPage(Page):
     template = "blog/blog_detail_page.html"
 
+    def get_context(self, request):
+
+        authorname='%s %s' % (self.author.first_name, self.author.last_name)
+        context = super().get_context(request)
+        context['author']=authorname
+
+        return context
+
     custom_title = models.CharField('Title', max_length=80, help_text='文章标题')
     #author = models.CharField("Author", max_length=255, default="Wang Zhenxuan")
     author = models.ForeignKey(User,on_delete=models.DO_NOTHING)
