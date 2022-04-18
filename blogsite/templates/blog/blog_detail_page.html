@@ -23,7 +23,9 @@
                         <ul class="entry-meta">
                             <li class="date">Created: {{self.create_date}}</li>
                             <li class="date">Updated: {{self.update_date}}</li>	
+                            <br>
                             {% for tag in self.tags.all %}
+                                <span class="glyphicon glyphicon-tag"></span>
                                 <li class="cat"><a href="{%slugurl 'tags' %}?tag={{ tag }}">{{tag}},</a></li>
                             {% endfor %}
                         </ul>				                  		
