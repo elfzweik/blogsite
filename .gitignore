@@ -1,6 +1,6 @@
 _pycache_/
 __pycache__/
-static_collected/
+# static_collected/
 db.sqlite3
 # Windows:
 Thumbs.db
