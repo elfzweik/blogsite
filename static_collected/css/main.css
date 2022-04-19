@@ -166,7 +166,7 @@ h6, .h06 {
 p img {
 	margin: 0;
 }
-p.lead {
+p.lead.p {
 	font-family: 'roboto-light', sans-serif, KaiTi, "KaiTi_GB2312", 楷体, STKaiti ;
 	font-size: 2.4rem;
 	line-height: 1.8;
@@ -181,7 +181,7 @@ p.lead {
 	overflow:hidden;
 }
 @media only screen and (max-width:768px) {
-	p.lead {
+	p.lead.p {
 		font-size: 2.1rem;
 	}
 }

@@ -139,7 +139,7 @@ class BlogDetailPage(Page):
     author = models.ForeignKey(User,on_delete=models.DO_NOTHING)
     create_date = models.DateField("Create date", auto_now_add= True)
     update_date = models.DateField("Update date", auto_now=True)
-    intro = RichTextField(max_length=500, help_text='文章简介')
+    intro = models.CharField('Introduction', max_length=500, help_text='文章简介')
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     
     #categories = ParentalManyToManyField('blog.BlogCategory', blank=True)
