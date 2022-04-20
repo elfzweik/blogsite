@@ -75,10 +75,7 @@
                             <li>
                                 <a href="/">博客</a>
                             </li>
-                            <!--<li>
-                                <a href="/blog/">博客</a>
-                            </li>-->
-    
+                               
                             <li>
                                 <a href="/about/">关于</a>
                             </li>
@@ -87,10 +84,10 @@
     
                     <div class="search-wrap">
     
-                        <form role="search" method="get" class="search-form" action="#">
+                        <form role="search" method="get" class="search-form" action="{% url 'search' %}">
                             <label>
                                 <span class="hide-content">Search for:</span>
-                                <input type="search" class="search-field" placeholder="Type Your Keywords" value="" name="s" title="Search for:" a>
+                                <input type="search" class="search-field" placeholder="Type Your Keywords" {% if search_query %} value="{{ search_query }}"{% endif %} name="query" title="Search for:" a>
                             </label>
                             <input type="submit" class="search-submit" value="Search">
                         </form>
@@ -142,7 +139,7 @@
     
                         <ul>
                             <li><a href="/about">About Us</a></li>
-                                <li><a href="/blog">Blog</a></li>
+                                <li><a href="/">Blog</a></li>
                                 <li><a href="/about">FAQ</a></li>
                                 <li><a href="/about">Terms</a></li>
                                 <li><a href="/about">Privacy Policy</a></li>
