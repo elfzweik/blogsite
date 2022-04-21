@@ -2481,19 +2481,26 @@ header .logo a {
 
 	.bricks-wrapper .grid-sizer,
 	.bricks-wrapper .brick {
-		width: 100%;
+		width: 50%;
 		padding: 0 10px;
 		clear: both;
+	}
+
+	.bricks-wrapper .featured-grid {
+		width: 100%;
 	}
 }
 @media only screen and (max-width:400px) {
 	.bricks-wrapper .brick {
-		width: 100% !important;
+		width: 50% !important;
 		float: none !important;
 		clear: both !important;
 		margin-left: 0;
 		margin-right: 0;
 		padding: 0;
+	}
+	.bricks-wrapper .featured-grid {
+		width: 100%;
 	}
 
 }
