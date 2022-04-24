@@ -34,9 +34,12 @@
                                     <li>
                                         <div class="featured-post-slide">
                                             {% if post.main_image %} 
-                                                {% image post.main_image width-700 as blog_img %}
+                                            "{{post.url}}">{% image post.main_image width-700 as blog_img %}
                                                     <div class="post-background" style="background-image: url('{{blog_img.url}}'); {{blog_img.background_position_style}}">
                                                     </div>
+                                                    <!--<a href="{{post.url}}" class="thumb-link">
+                                                        <img src="{{blog_img.url}}" alt="{{post.custom_title}}"> -->            
+                                                    </a>
                                                 {% endif %}
                                             <div class="overlay"></div>			   		
 
@@ -94,7 +97,7 @@
                                 
                             </div>
                                 <div class="entry-excerpt">
-                                    <span>Author: {{post.author.first_name}} {{post.author.last_name}}</span>
+                                    <span>Author: {{post.author.get_fullname_or_username}}</span>
                                     <br>    
                                     <span>Upated at: {{post.update_date}}</span>                                       				
                                     <br>

@@ -62,9 +62,14 @@
                             <h1 class="entry-title"><a href="{{post.url}}">{{post.custom_title|safe}}</a></h1>
                             
                         </div>
-                            <div class="entry-excerpt">
-                                {{post.intro| safe |truncatechars:140}}
-                            </div>
+                        <div class="entry-excerpt">
+                            <span>Author: {{post.author.get_fullname_or_username}}</span>
+                            <br>    
+                            <span>Upated at: {{post.update_date}}</span>                                       				
+                            <br>
+                            <br>
+                            {{post.intro |safe |truncatechars:140}}
+                        </div>
                     </div>
     
                     </article> <!-- end article -->
