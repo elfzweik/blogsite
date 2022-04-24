@@ -21,6 +21,8 @@ def login_for_medal(request):
     return JsonResponse(data)
 
 def login(request):
+    redirect_to = request.GET.get('from', '/')
+
     if request.method == 'POST':
         login_form = LoginForm(request.POST)
         if login_form.is_valid():
@@ -32,9 +34,12 @@ def login(request):
 
     context = {}
     context['login_form'] = login_form
+    context['return_back_url'] = redirect_to
     return render(request, 'user/login.html', context)
 
 def register(request):
+    redirect_to = request.GET.get('from', '/')
+
     if request.method == 'POST':
         reg_form = RegForm(request.POST, request.FILES)
         if reg_form.is_valid():
@@ -66,6 +71,7 @@ def register(request):
 
     context = {}
     context['reg_form'] = reg_form
+    context['return_back_url'] = redirect_to
     return render(request, 'user/register.html', context)
     
 def logout(request):
