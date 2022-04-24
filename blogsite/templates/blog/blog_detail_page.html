@@ -1,6 +1,15 @@
 {% extends "base.html" %}
 
-{% load wagtailimages_tags wagtailcore_tags%}
+{% load static wagtailuserbar %}
+{% load wagtailimages_tags wagtailcore_tags %}
+{% load comment_tags %}
+
+
+{% block header %}
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>   
+    
+{% endblock %}
 
 {% block content %}
 
@@ -23,7 +32,7 @@
                         <ul class="entry-meta">
                             <li class="date">Created: {{self.create_date}}</li>
                             <li class="date">Updated: {{self.update_date}}</li>	
-                            <li class="author">Author: {{author}}</li>
+                            <li class="author">Author: {{self.author.get_fullname_or_username}}</li>
                             <br>
                             {% for tag in self.tags.all %}
                                 <span class="glyphicon glyphicon-tag"></span>
@@ -70,5 +79,200 @@
 
 			</div> <!-- end col-twelve -->
         </div> <!-- end row -->		
-    </section> <!-- end content -->
+    
+        <div class="comments-wrap">
+            <div id="comments" class="row">
+                <div class="col-full">    
+                    <!-- respond -->
+                    <div class="respond">
+
+                        <h3>Leave a Comment</h3>
+                        {% if user.is_authenticated %}
+
+                            <form name="contactForm" id="contactForm-id" method="post" action="{% url 'update_comment' %}" >
+                                <fieldset>
+                                    <div class="form-field">
+                                            <label id="cName" class="full-width">{{ user.get_fullname_or_username }}，尽情吐槽吧~</label>
+                                    </div>
+                                    <div id="reply-content-container-id" style="display:none;">
+                                        <p id="reply-title-id">回复：</p>
+                                        <div id="reply-content-id"></div>
+                                    </div>
+                                    {% csrf_token %}
+                                    
+                                    <input type="hidden" name="content_type" value="blogdetailpage" id="id_content_type">
+                                    
+                                    <input type="hidden" name="object_id" value="{{self.pk}}" id="id_object_id">
+                                    
+                                    <input type="hidden" name="reply_comment_id" value="0" id="reply_comment_id">
+                                
+                                    <div class="message form-field"></div>
+                                        <textarea style= "margin-bottom : 0px" name="text" class="full-width" required id="id_text" ></textarea>
+                                    </div>
+ 
+                                    <span id="comment_error" class="text-danger pull-left"></span>
+                                    <button type="submit" class="submit button-primary">Submit</button>
+                                </fieldset>
+                            </form> <!-- Form End -->
+                        {% else %}
+                            来签个到再发言吧~ 
+                            <a class="button button-primary small-width" href="{% url 'login' %}?from={{ request.get_full_path }}">登录</a>
+                           
+                            <a class="button button-primary small-width" href="{% url 'register' %}?from={{ request.get_full_path }}">注册</a>
+                        {% endif %}
+                    </div> <!-- Respond End -->
+    
+                    <hr>
+        
+                    <h3>{%get_comment_count self %} Comments</h3>
+        
+                    <!-- commentlist -->
+                   
+                    <ol class="commentlist">
+                        {% get_comment_list self as comments %}
+                        {% for comment in comments %}
+                            <li class="thread-alt depth-1" id="root_{{ comment.pk }}">
+                
+                                <div class="avatar" id="avatar-id">
+                                    <img width="50" height="50" class="avatar" src="{{comment.user.profile.avatar.url}}" alt="">
+                                </div>
+                
+                                <div class="comment-content">
+                
+                                    <div class="comment-info">
+                                        <cite id="commentor-{{comment.pk}}">{{comment.user.get_fullname_or_username}}</cite>
+                
+                                        <div class="comment-meta">
+                                        <time class="comment-time" id="commnet-time-id" datetime="2014-07-12T23:05">{{ comment.comment_time|date:"Y-m-d H:i:s" }}</time>
+                                        <span class="sep">/</span><a class="reply" href="javascript:reply({{ comment.pk }});">Reply</a>
+                                        </div>
+                                    </div>
+                
+                                    <div class="comment-text">
+                                        <p id="comment_{{ comment.pk }}">{{ comment.text }}</p>
+                                    </div>
+                
+                                </div>
+                                {% for reply in comment.root_comment.all %}
+                                    <ul class="children">
+
+                                        <li class="depth-2">
+
+                                            <div class="avatar">
+                                                <img width="50" height="50" class="avatar" src="{{reply.user.profile.avatar.url}}" alt="">
+                                            </div>
+
+                                            <div class="comment-content">
+
+                                                <div class="comment-info">
+                                                    <cite id="commentor-{{reply.pk}}">{{reply.user.get_fullname_or_username}} -> {{ reply.reply_to.get_fullname_or_username}}</cite>
+
+                                                    <div class="comment-meta" id="comment-time-id">
+                                                        <time class="comment-time"  datetime="2014-07-12T25:05">{{ reply.comment_time|date:"Y-m-d H:i:s" }}</time>
+                                                        <span class="sep">/</span><a class="reply" href="javascript:reply({{ reply.pk }});">Reply</a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="comment-text" id="comment-text-id">
+                                                    <p id="comment_{{reply.pk}}">{{ reply.text }}</p>
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                    </ul>
+                                {% endfor %}
+                            </li>
+                            
+                        {% endfor %}
+                    </ol> <!-- Commentlist End -->
+                </div> <!-- end col-full -->
+            </div> <!-- end row comments -->
+        </div> <!-- end comments-wrap -->
+    </section> <!-- end content -->      
+
+    
+{% endblock %}
+
+{% block script_extends %}
+    <script type="text/javascript">
+        function reply(reply_comment_id){
+            // 设置值
+            $('#reply_comment_id').val(reply_comment_id);
+            var html = $("#comment_" + reply_comment_id).html();
+            console.log($("#commentor-"+reply_comment_id).html().split("-&gt;"));
+            userhtml='->'+$("#commentor-"+reply_comment_id).html().split("-&gt;")[0];
+            console.log(userhtml);
+            $('#reply-title-id').html(userhtml);
+            $('#reply-content-id').html(html);
+            $('#reply-content-container-id').show();
+            
+            $('html').animate({scrollTop: $('#contactForm-id').offset().top - 60}, 300, function(){
+                $('#id_text').focus();
+            });
+        }
+        function numFormat(num){
+            return ('00' + num).substr(-2);
+        }
+        function timeFormat(timestamp){
+            var datetime = new Date(timestamp * 1000);
+            var year = datetime.getFullYear();
+            var month = numFormat(datetime.getMonth() + 1);
+            var day = numFormat(datetime.getDate());
+            var hour = numFormat(datetime.getHours());
+            var minute = numFormat(datetime.getMinutes());
+            var second = numFormat(datetime.getSeconds());
+            return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
+        }
+        
+        $('#contactForm-id').submit(function(){
+            // 判断是否为空
+            alart("js捕获成功");
+            $("#comment_error").text('');
+            if($("#id_text").val().trim()==''){
+                $("#comment_error").text('评论内容不能为空');
+                return false;
+            }
+
+            // 更新数据到textarea
+            $('#id_text').updateElement();
+
+            // 异步提交
+            $.ajax({
+                url: "{% url 'update_comment' %}",
+                type: 'POST',
+                data: $(this).serialize(),
+                cache: false,
+                success: function(data){
+                    console.log(data);
+                    if(data['status']=="SUCCESS"){
+                        if($('#reply_comment_id').val()=='0'){
+                            // 插入评论
+                            var comment_html = '<div id="root_' + data['pk'] + '" class="comment"><span>' + data['username'] + '</span><span> (' + timeFormat(data['comment_time']) + ')：</span><div id="comment_' + data['pk'] + '">' + data['text'] + '</div><a href="javascript:reply(' + data['pk'] + ');">回复</a></div>';
+                            $("#comment_list").prepend(comment_html);
+                        }else{ 
+                            // 插入回复
+                            var reply_html ='<div class="reply"><span>' + data['username'] + '</span><span> (' + timeFormat(data['comment_time']) + ')</span><span> 回复 </span><span>' + data['reply_to'] + '：</span><div id="comment_' + data['pk'] + '">' + data['text'] + '</div><a href="javascript:reply(' + data['pk'] + ');">回复</a></div>';
+                            $("#root_" + data['root_pk']).append(reply_html);
+                        }
+                        
+                        // 清空编辑框的内容
+                        $('#id_text').setData('');
+                        $('#reply_content_container').hide();
+                        $('#reply_comment_id').val('0');
+                        $('#no_comment').remove();
+                        $("#comment_error").text('评论成功');
+                    }else{
+                        // 显示错误信息
+                        $("#comment_error").text(data['message']);
+                    }                    
+                },
+                error: function(xhr){
+                    console.log(xhr);
+                }
+            });
+            return false;
+        });
+
+    </script>
+
 {% endblock %}

@@ -1,0 +1,49 @@
+{% load static wagtailuserbar %}
+<!DOCTYPE html>
+ <html lang="en">
+ 
+ <head>
+     <meta charset="UTF-8">
+     <title>register</title>
+     <link rel="stylesheet" href="{% static 'css/userinfo.css' %}">
+ </head>
+ 
+ <body>
+     <div id="loginDiv">
+        {% if user.is_authenticated %}
+        <div>
+            <h1>{{user.username}}</h1><br>
+            <div style="text-align: center">
+                <img src="{{user.profile.avatar.url}}" alt="" id="avatar"><br>
+                <a href="{% url 'change_avatar' %}?from={{ request.get_full_path }}">修改头像</a>
+            </div>
+
+            <label class="items" for="id_last_name">姓</label>
+            <label class="values"><a href="{% url 'change_name' %}?from={{ request.get_full_path }}">{{user.last_name}}</a></label>
+            <br>
+
+            <label class="items" for="id_first_name">名</label>
+            <label class="values"><a href="{% url 'change_name' %}?from={{ request.get_full_path }}">{{user.first_name}}</a></label>
+             <br>
+
+            <label class="items" for="id_email">邮箱</label>
+            <label class="values"><a href="{% url 'bind_email' %}?from={{ request.get_full_path }}">{{user.email}}</a></label>
+            <br>
+            <br>
+            <div style="text-align: center">
+                <a href="{% url 'change_password' %}?from={{ request.get_full_path }}">修改密码</a>
+                <br>
+                <button class="button" onclick="javascript: window.location.href='{{return_back_url}}'">返回</button>
+            </div>
+        </div>
+         {% else %}
+            <span>未登录，跳转到首页...</span>
+            <script type="text/javascript">
+                window.location.href = '/';
+            </script>
+        {% endif %}
+     </div>
+ 
+ </body>
+ 
+ </html>

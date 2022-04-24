@@ -1,0 +1,44 @@
+{% load static wagtailuserbar %}
+<!DOCTYPE html>
+ <html lang="en">
+ 
+ <head>
+     <meta charset="UTF-8">
+     <title>{{page_title}}</title>
+     <link rel="stylesheet" href="{% static 'css/userinfo.css' %}">
+ </head>
+ 
+ <body>
+     <div id="loginDiv">
+        {% if user.is_authenticated %}
+        <form action="" method="POST", enctype="multipart/form-data">
+            <h1>{{user.username}}</h1><br>
+            <div style="text-align: center">
+                <img src="{{user.profile.avatar.url}}" alt="" id="avatar"><br>
+                <a href="">修改头像</a>
+            </div>
+
+            {% csrf_token %}
+            {% for field in form %}
+                {% if not field.is_hidden %}
+                    <label class="items" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {% endif %}  
+                {{ field }}  
+                <p class="text-danger">{{ field.errors.as_text }}</p>
+            {% endfor %}    
+            <span id="tip" class="text-danger"></span>
+            <p style="text-align: center;">
+                <input type="submit" class="button" value="{{ submit_text }}">
+                <button class="button" onclick="javascript:window.location.href='{{return_back_url}}'">返回</button>
+            </p>
+         {% else %}
+            <span>未登录，跳转到首页...</span>
+            <script type="text/javascript">
+                window.location.href = '/';
+            </script>
+        {% endif %}
+     </div>
+ 
+ </body>
+ 
+ </html>

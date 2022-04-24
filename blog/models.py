@@ -128,7 +128,7 @@ class BlogDetailPage(Page):
 
     def get_context(self, request):
 
-        authorname='%s %s' % (self.author.first_name, self.author.last_name)
+        authorname=self.author.get_fullname_or_username()
         context = super().get_context(request)
         context['author']=authorname
 

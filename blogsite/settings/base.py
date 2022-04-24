@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'flex',
     'streams',
     'blog',
+    'user',
+    'comment',
     
     'ckeditor',
     "wagtail.contrib.table_block",
@@ -101,8 +103,13 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
-
+"""
+WAGTAILSEARCH_BACKENDS = {
+    'default': {
+        'BACKEND': 'wagtail.search.backends.database',
+    }
+}
+"""
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -159,7 +166,24 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media_collected')
 MEDIA_URL = '/media/'
 
-
+CKEDITOR_CONFIGS = {
+    'default': {},
+    'comment_ckeditor': {
+        'toolbar': 'custom',
+        'toolbar_custom': [
+            ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript'],
+            ["TextColor", "BGColor", 'RemoveFormat'],
+            ['NumberedList', 'BulletedList'],
+            ['Link', 'Unlink'],
+            ["Smiley", "SpecialChar", 'Blockquote'],
+        ],
+        'width': 'auto',
+        'height': '180',
+        'tabSpaces': 4,
+        'removePlugins': 'elementspath',
+        'resize_enabled': False,
+    }
+}
 # Wagtail settings
 
 WAGTAIL_SITE_NAME = "blogsite"
