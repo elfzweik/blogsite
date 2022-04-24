@@ -27,7 +27,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 500px;
+    height: 600px;
     background-color: rgba(75, 81, 95, 0.3);
     box-shadow: 7px 7px 17px rgba(52, 56, 66, 0.5);
     border-radius: 10px;
@@ -127,4 +127,6 @@ a:active {color:#3333b4;}  /* 鼠标点击时 */
 
 #avatar {
     margin: 0 auto;
+    width: 200px;
+    
 }
