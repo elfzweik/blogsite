@@ -18,16 +18,16 @@
                 <a href="{% url 'change_avatar' %}?from={{ request.get_full_path }}">修改头像</a>
             </div>
 
-            <label class="items" for="id_last_name">姓</label>
-            <label class="values"><a href="{% url 'change_name' %}?from={{ request.get_full_path }}">{{user.last_name}}</a></label>
+            <label class="items" for="id_last_name"><a href="{% url 'change_name' %}?from={{ request.get_full_path }}">姓</a></label>
+            <label class="values">{{user.last_name}}</label>
             <br>
 
-            <label class="items" for="id_first_name">名</label>
-            <label class="values"><a href="{% url 'change_name' %}?from={{ request.get_full_path }}">{{user.first_name}}</a></label>
+            <label class="items" for="id_first_name"><a href="{% url 'change_name' %}?from={{ request.get_full_path }}">名</a></label>
+            <label class="values">{{user.first_name}}</label>
              <br>
 
-            <label class="items" for="id_email">邮箱</label>
-            <label class="values"><a href="{% url 'bind_email' %}?from={{ request.get_full_path }}">{{user.email}}</a></label>
+            <label class="items" for="id_email"><a href="{% url 'bind_email' %}?from={{ request.get_full_path }}">邮箱</a></label>
+            <label class="values">{{user.email}}</label>
             <br>
             <br>
             <div style="text-align: center">
