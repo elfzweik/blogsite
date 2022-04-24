@@ -14,8 +14,11 @@
         <form action="" method="POST", enctype="multipart/form-data">
             <h1>{{user.username}}</h1><br>
             <div style="text-align: center">
-                <img src="{{user.profile.avatar.url}}" alt="" id="avatar"><br>
+                {% if user.profile.avatar %}
+                    <img src="{{user.profile.avatar.url}}" alt="" id="avatar"><br>
+                {% endif %}    
                 <a href="">修改头像</a>
+                
             </div>
 
             {% csrf_token %}
