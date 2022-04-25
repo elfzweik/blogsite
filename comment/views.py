@@ -42,5 +42,5 @@ def update_comment(request):
         #return render(request, 'error.html', {'message': comment_form.errors, 'redirect_to': referer})
         data['status'] = 'ERROR'
         data['message'] = list(comment_form.errors.values())[0][0]
-    return redirect(referer)
-
+    #return redirect(referer)
+    return JsonResponse(data)

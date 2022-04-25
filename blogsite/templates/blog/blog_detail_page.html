@@ -111,7 +111,7 @@
                                     </div>
  
                                     <span id="comment_error" class="text-danger pull-left"></span>
-                                    <button type="submit" class="submit button-primary">Submit</button>
+                                    <button type="submit" class="submita button-primary" onclick="insertcomment()">Submit</button>
                                 </fieldset>
                             </form> <!-- Form End -->
                         {% else %}
@@ -124,7 +124,7 @@
     
                     <hr>
         
-                    <h3>{%get_comment_count self %} Comments</h3>
+                    <h3>{% get_comment_count self %} Comments</h3>
         
                     <!-- commentlist -->
                    
@@ -224,7 +224,7 @@
             return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
         }
         
-        $('#contactForm-id').submit(function(){
+        function insertcomment(){
             // 判断是否为空
             alart("js捕获成功");
             $("#comment_error").text('');
@@ -234,13 +234,13 @@
             }
 
             // 更新数据到textarea
-            $('#id_text').updateElement();
+            $("#id_text").updateElement();
 
             // 异步提交
             $.ajax({
                 url: "{% url 'update_comment' %}",
                 type: 'POST',
-                data: $(this).serialize(),
+                data: $('#contactForm-id').serialize(),
                 cache: false,
                 success: function(data){
                     console.log(data);
@@ -271,7 +271,7 @@
                 }
             });
             return false;
-        });
+        };
 
     </script>
 

@@ -34,13 +34,13 @@
                                     <li>
                                         <div class="featured-post-slide">
                                             {% if post.main_image %} 
-                                            "{{post.url}}">{% image post.main_image width-700 as blog_img %}
-                                                    <div class="post-background" style="background-image: url('{{blog_img.url}}'); {{blog_img.background_position_style}}">
-                                                    </div>
-                                                    <!--<a href="{{post.url}}" class="thumb-link">
-                                                        <img src="{{blog_img.url}}" alt="{{post.custom_title}}"> -->            
-                                                    </a>
-                                                {% endif %}
+                                                {% image post.main_image width-700 as blog_img %}
+                                                <div class="post-background" style="background-image: url('{{blog_img.url}}'); {{blog_img.background_position_style}}">
+                                                </div>
+                                                <!--<a href="{{post.url}}" class="thumb-link">
+                                                    <img src="{{blog_img.url}}" alt="{{post.custom_title}}"> -->            
+                                                </a>
+                                            {% endif %}
                                             <div class="overlay"></div>			   		
 
                                             <div class="post-content">
