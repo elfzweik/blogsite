@@ -2964,13 +2964,26 @@ footer ul li {
 	width: 6rem;
 }
 
+.avatar-depth-2 {
+	position: absolute;
+	left: 5%;
+	display: block;
+	height: 6rem;
+	width: 6rem;
+}
+
 .commentlist li .avatar img {
 	margin-top: 0.6rem;
 	height: 6rem;
 	width: 6rem;
 	border-radius: 100%;
 }
-
+.avatar-depth-2 img {
+	margin-top: 0.6rem;
+	height: 6rem;
+	width: 6rem;
+	border-radius: 100%;
+}
 .commentlist li .comment-info cite {
 	font-family: "montserrat-bold", sans-serif, HeiTi, "Microsoft JhengHei", SimHei, STHeiti;
 	font-weight: bold;
