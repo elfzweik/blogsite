@@ -111,7 +111,7 @@
                                     </div>
  
                                     <span id="comment_error" class="text-danger pull-left"></span>
-                                    <button type="submit" class="submita button-primary" onclick="insertcomment()">Submit</button>
+                                    <button type="submit" class="submit button-primary" >Submit</button>
                                 </fieldset>
                             </form> <!-- Form End -->
                         {% else %}
@@ -224,8 +224,9 @@
             return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
         }
         
-        function insertcomment(){
+        $("#contactForm-id").submit(function(){
             // 判断是否为空
+            debugger;
             alart("js捕获成功");
             $("#comment_error").text('');
             if($("#id_text").val().trim()==''){
@@ -271,7 +272,7 @@
                 }
             });
             return false;
-        };
+        });
 
     </script>
 

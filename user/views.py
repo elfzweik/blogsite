@@ -137,9 +137,10 @@ def change_avatar(request):
         form = ChangeAvatarForm(request.POST, request.FILES, user=request.user)
         if form.is_valid():
             avatar = form.cleaned_data['avatar']
-            profile, created = Profile.objects.get_or_create(user=request.user)
-            profile.avatar = avatar
-            profile.save()
+            if avatar != None:
+                profile, created = Profile.objects.get_or_create(user=request.user)
+                profile.avatar = avatar
+                profile.save()
             return redirect(redirect_to)
     else:
         form = ChangeAvatarForm()
