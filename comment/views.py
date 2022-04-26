@@ -5,7 +5,6 @@ from django.http import JsonResponse
 from .models import Comment
 from .forms import CommentForm
 
-
 def update_comment(request):
     referer = request.META.get('HTTP_REFERER', '/')
     comment_form = CommentForm(request.POST, user=request.user)
@@ -28,7 +27,7 @@ def update_comment(request):
         # 返回数据
         data['status'] = 'SUCCESS'
         data['username'] = comment.user.get_fullname_or_username()
-        data['avatar'] = comment.user.profile.avatar.name
+        data['avatar'] = comment.user.profile.avatar.url
         data['comment_time'] = comment.comment_time.timestamp()
         data['text'] = comment.text
         data['content_type'] = ContentType.objects.get_for_model(comment).model
@@ -42,5 +41,5 @@ def update_comment(request):
         #return render(request, 'error.html', {'message': comment_form.errors, 'redirect_to': referer})
         data['status'] = 'ERROR'
         data['message'] = list(comment_form.errors.values())[0][0]
-    return redirect(referer)
-    #return JsonResponse(data)
+    #return redirect(referer)
+    return JsonResponse(data)

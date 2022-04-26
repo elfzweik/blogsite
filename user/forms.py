@@ -27,12 +27,12 @@ class RegForm(forms.Form):
                                widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'取个名吧'}))
     last_name = forms.CharField(label='姓', required=False, 
                                max_length=20,
-                               min_length=3,
+                               min_length=1,
                                widget=forms.TextInput(attrs={'class':'form-control',  'placeholder':'您老贵姓？'}))
     
     first_name = forms.CharField(label='名', required=False,
                                max_length=20,
-                               min_length=3,
+                               min_length=1,
                                widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'请教大名？'}))
     
     email = forms.EmailField(label='邮箱', required=False,

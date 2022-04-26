@@ -17,7 +17,10 @@
             {% for field in reg_form %}
                 <label class="items" for="{{ field.id_for_label }}">{{ field.label }}</label>
                 {{ field }}
-                <p class="text-danger">{{ field.errors.as_text }}</p>
+                <div class="error-message">
+                    {{ field.errors.as_text }}
+                </div>
+                
             {% endfor %}
             <p id="avatar-hint">展示一下您的绝世美颜呗？如果不上传照片，将给你随机分配一个头像。</p>
             
@@ -104,7 +107,7 @@
          //获取用户名输入项
          var userNname = document.getElementById("id-username");
          var uName = userNname.value;
-         if (uName.length < 1 || uName.length > 20) {
+         if (uName.length < 3 || uName.length > 20) {
              trip("name_trip", "账号长度为1-20位!!");
              return false;
          } else {

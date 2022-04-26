@@ -88,8 +88,29 @@
 
                         <h3>Leave a Comment</h3>
                         {% if user.is_authenticated %}
-
-                            <form name="contactForm" id="contactForm-id" method="post" action="{% url 'update_comment' %}" >
+                            <form id="comment_form-id" action="{% url 'update_comment' %}" method="POST">
+                                <fieldset>
+                                    <label>{{ user.get_fullname_or_username }}，尽情吐槽吧~</label>
+                                    <div id="reply_content_container" style="display:none;">
+                                        <p id="reply_title">回复：</p>
+                                        <div id="reply_content"></div>
+                                    </div>
+                                    <span id="comment_error" class="text-danger pull-left"></span>
+                                    {% csrf_token %}
+                                    <input type="hidden" name="content_type" value="blogdetailpage" id="id_content_type">
+                                    
+                                    <input type="hidden" name="object_id" value="{{self.pk}}" id="id_object_id">
+                                    
+                                    <input type="hidden" name="reply_comment_id" value="0" id="reply_comment_id">
+                                
+                                    <div class="message form-field"></div>
+                                        <textarea style= "margin-bottom : 0px" name="text" id="id_text" class="full-width" required onfocus="javascript: $('#comment_error').text('');"></textarea>
+                                    </div>
+                                    
+                                    <input type="submit" value="Submit" class="submit button-primary">
+                                </fieldset>
+                            </form>
+                            <!--<form name="contactForm" id="contactForm-id" method="post" action="{% url 'update_comment' %}" onsubmit="javascript:submitComment()" >
                                 <fieldset>
                                     <div class="form-field">
                                             <label id="cName" class="full-width">{{ user.get_fullname_or_username }}，尽情吐槽吧~</label>
@@ -107,7 +128,7 @@
                                     <input type="hidden" name="reply_comment_id" value="0" id="reply_comment_id">
                                 
                                     <div class="message form-field"></div>
-                                        <textarea style= "margin-bottom : 0px" name="text" class="full-width" required id="id_text" ></textarea>
+                                        <textarea style= "margin-bottom : 0px" name="text" class="full-width" required id="id_text" οnfοcus="$("#comment_error").text('');“></textarea>
                                     </div>
  
                                     <span id="comment_error" class="text-danger pull-left"></span>
@@ -128,12 +149,12 @@
         
                     <!-- commentlist -->
                    
-                    <ol class="commentlist">
+                    <ol class="commentlist" id="commentlist-id">
                         {% get_comment_list self as comments %}
                         {% for comment in comments %}
                             <li class="thread-alt depth-1" id="root_{{ comment.pk }}">
                 
-                                <div class="avatar" id="avatar-id">
+                                <div class="avatar">
                                     <img width="50" height="50" class="avatar" src="{{comment.user.profile.avatar.url}}" alt="">
                                 </div>
                 
@@ -165,7 +186,11 @@
                                             <div class="comment-content">
 
                                                 <div class="comment-info">
-                                                    <cite id="commentor-{{reply.pk}}">{{reply.user.get_fullname_or_username}} -> {{ reply.reply_to.get_fullname_or_username}}</cite>
+                                                    <cite id="commentor-{{reply.pk}}">{{reply.user.get_fullname_or_username}} 
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right" viewBox="0 0 16 16">
+                                                            <path d="M6 12.796V3.204L11.481 8 6 12.796zm.659.753 5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753z"/>
+                                                          </svg>
+                                                         {{ reply.reply_to.get_fullname_or_username}}</cite>
 
                                                     <div class="comment-meta" id="comment-time-id">
                                                         <time class="comment-time"  datetime="2014-07-12T25:05">{{ reply.comment_time|date:"Y-m-d H:i:s" }}</time>
@@ -195,6 +220,14 @@
 
 {% block script_extends %}
     <script type="text/javascript">
+        String.prototype.format = function(){
+            var str = this;
+            for (var i = 0; i < arguments.length; i++) {
+                var str = str.replace(new RegExp('\\{' + i + '\\}', 'g'), arguments[i])
+            };
+            return str;
+        }
+
         function reply(reply_comment_id){
             // 设置值
             $('#reply_comment_id').val(reply_comment_id);
@@ -206,8 +239,9 @@
             $('#reply-content-id').html(html);
             $('#reply-content-container-id').show();
             
-            $('html').animate({scrollTop: $('#contactForm-id').offset().top - 60}, 300, function(){
+            $('html').animate({scrollTop: $('#comment_form-id').offset().top - 60}, 300, function(){
                 $('#id_text').focus();
+                $("#comment_error").text('');
             });
         }
         function numFormat(num){
@@ -224,44 +258,91 @@
             return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
         }
         
-        $("#contactForm-id").submit(function(){
+        $("#comment_form-id").submit(function(){
             // 判断是否为空
-            debugger;
-            alart("js捕获成功");
+            //debugger;
+            console.log("js捕获成功");
             $("#comment_error").text('');
+            console.log($("#id_text").val());
             if($("#id_text").val().trim()==''){
-                $("#comment_error").text('评论内容不能为空');
+                $("#comment_error").text('不说话您发的哪门子评论啊？');
                 return false;
             }
 
             // 更新数据到textarea
-            $("#id_text").updateElement();
+            //$("#id_text").updateElement();
+            //$('id_text').updateElement();
+            console.log("to go into ajax");
 
             // 异步提交
             $.ajax({
                 url: "{% url 'update_comment' %}",
                 type: 'POST',
-                data: $('#contactForm-id').serialize(),
+                data: $('#comment_form-id').serialize(),
                 cache: false,
                 success: function(data){
                     console.log(data);
                     if(data['status']=="SUCCESS"){
                         if($('#reply_comment_id').val()=='0'){
                             // 插入评论
-                            var comment_html = '<div id="root_' + data['pk'] + '" class="comment"><span>' + data['username'] + '</span><span> (' + timeFormat(data['comment_time']) + ')：</span><div id="comment_' + data['pk'] + '">' + data['text'] + '</div><a href="javascript:reply(' + data['pk'] + ');">回复</a></div>';
-                            $("#comment_list").prepend(comment_html);
+                            var comment_html = '<li class="thread-alt depth-1" id="root_'+data['pk']+'">' +
+                                                    '<div class="avatar"> <img width="50" height="50" class="avatar" src="{1}" alt="">' +
+                                                    '</div>' +        
+                                                    '<div class="comment-content">'+
+                                                        '<div class="comment-info">'+
+                                                            '<cite id="commentor-{2}+"></cite>'+
+                                                            '<div class="comment-meta">'+
+                                                                '<time class="comment-time">{4}</time>' +
+                                                                '<span class="sep">/</span>' +
+                                                                '<a class="reply" href="javascript:reply({5};">Reply</a>' +
+                                                            '</div>' +
+                                                        '</div>' +
+                                                        '<div class="comment-text">' +
+                                                            '<p id="comment_{6}"> {0}</p>'+
+                                                        '</div>' +
+                                                    '</div>'+
+                                                '</li>';
+                            comment_html = comment_html.format(data['text'], data["avatar"], data["pk"], data["username"], timeFormat(data['comment_time']), data["pk"], data['pk']);
+                            console.log(comment_html);
+                            $("#commentlist-id").prepend(comment_html);
                         }else{ 
                             // 插入回复
-                            var reply_html ='<div class="reply"><span>' + data['username'] + '</span><span> (' + timeFormat(data['comment_time']) + ')</span><span> 回复 </span><span>' + data['reply_to'] + '：</span><div id="comment_' + data['pk'] + '">' + data['text'] + '</div><a href="javascript:reply(' + data['pk'] + ');">回复</a></div>';
+                            var reply_html ='<ul class="children">' + 
+                                                '<li class="depth-2">'+
+                                                    '<div class="avatar-depth-2">' +
+                                                        '<img width="50" height="50" class="avatar-depth-2" src="{1}" alt="">' +
+                                                    '</div>'+
+                                                    '<div class="comment-content">'+
+                                                        '<div class="comment-info">'+
+                                                            '<cite id="commentor-{2}"> {3}' +
+                                                                '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right" viewBox="0 0 16 16">'+
+                                                                    '<path d="M6 12.796V3.204L11.481 8 6 12.796zm.659.753 5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753z"/>'+
+                                                                '</svg>' +
+                                                                ' {4}</cite>'+
+                                                            '<div class="comment-meta" >'+
+                                                                '<time class="comment-time">{5} </time>'+
+                                                                '<span class="sep">/</span>'+
+                                                                '<a class="reply" href="javascript:reply({6});">Reply</a>'+
+                                                            '</div>'+
+                                                        '</div>'+
+                                                        '<div class="comment-text" id="comment-text-id">'+
+                                                            '<p id="comment_{7}">{0}</p>'+
+                                                        '</div>'+
+                                                    '</div>'+
+                                                '</li>'+
+                                            '</ul>';
+                            reply_html = reply_html.format(data['text'], data['avatar'], data['pk'], data['username'], data['reply_to'], timeFormat(data['comment_time']), data['root_pk'], data['root_pk']);
+                            console.log(reply_html);
                             $("#root_" + data['root_pk']).append(reply_html);
                         }
                         
                         // 清空编辑框的内容
-                        $('#id_text').setData('');
+                        //$('#id_text').setData('');
+                        $('#id_text').val('');
                         $('#reply_content_container').hide();
                         $('#reply_comment_id').val('0');
-                        $('#no_comment').remove();
-                        $("#comment_error").text('评论成功');
+
+                        $("#comment_error").text('吐槽已发送');
                     }else{
                         // 显示错误信息
                         $("#comment_error").text(data['message']);
@@ -270,7 +351,9 @@
                 error: function(xhr){
                     console.log(xhr);
                 }
+                
             });
+            console.log("ajax finished.");
             return false;
         });
 
