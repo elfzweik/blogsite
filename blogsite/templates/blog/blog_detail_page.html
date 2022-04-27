@@ -136,7 +136,8 @@
                                 </fieldset>
                             </form> <!-- Form End -->
                         {% else %}
-                            来签个到再发言吧~ 
+                            来签个到再发言吧~
+                            <br> 
                             <a class="button button-primary small-width" href="{% url 'login' %}?from={{ request.get_full_path }}">登录</a>
                            
                             <a class="button button-primary small-width" href="{% url 'register' %}?from={{ request.get_full_path }}">注册</a>
