@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'user',
     'comment',
     
+    
     'ckeditor',
     "wagtail.contrib.table_block",
     'wagtailmarkdown',

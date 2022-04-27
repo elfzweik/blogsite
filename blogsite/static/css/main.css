@@ -3057,12 +3057,12 @@ footer ul li {
 	}
 
 	.commentlist > li {
-		padding-left: 0;
+		padding-left: 15%;
 	}
 
-	.commentlist li .avatar {
+	/*.commentlist li .avatar {
 		display: none;
-	}
+	}*/
 
 }
 
