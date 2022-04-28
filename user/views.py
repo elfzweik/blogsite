@@ -22,13 +22,18 @@ def login_for_medal(request):
 
 def login(request):
     redirect_to = request.GET.get('from', '/')
+    if redirect_to.startswith('/user/register'):
+        path_split = redirect_to.split('/user/register/?from=')
+        redirect_to = path_split[-1]
+        path_split = redirect_to.split('user/login/?from=')
+        redirect_to = path_split[-1]
 
     if request.method == 'POST':
         login_form = LoginForm(request.POST)
         if login_form.is_valid():
             user = login_form.cleaned_data['user']
             auth.login(request, user)
-            return redirect(request.GET.get('from', '/'))
+            return redirect(redirect_to, '/')
     else:
         login_form = LoginForm()
 
@@ -39,6 +44,11 @@ def login(request):
 
 def register(request):
     redirect_to = request.GET.get('from', '/')
+    if redirect_to.startswith('/user/register'):
+        path_split = redirect_to.split('user/login/?from=')
+        redirect_to = path_split[-1]
+        path_split = redirect_to.split('/user/register/?from=')
+        redirect_to = path_split[-1]
 
     if request.method == 'POST':
         reg_form = RegForm(request.POST, request.FILES)
@@ -65,7 +75,7 @@ def register(request):
             # 登录用户
             user = auth.authenticate(username=username, password=password)
             auth.login(request, user)
-            return redirect(request.GET.get('from', '/'))
+            return redirect(redirect_to, '/')
     else:
         reg_form = RegForm()
 
