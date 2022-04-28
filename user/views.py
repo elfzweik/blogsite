@@ -44,7 +44,7 @@ def login(request):
 
 def register(request):
     redirect_to = request.GET.get('from', '/')
-    if redirect_to.startswith('/user/register'):
+    if redirect_to.startswith('/user/login'):
         path_split = redirect_to.split('user/login/?from=')
         redirect_to = path_split[-1]
         path_split = redirect_to.split('/user/register/?from=')
