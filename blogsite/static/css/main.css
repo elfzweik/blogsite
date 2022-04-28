@@ -2529,6 +2529,9 @@ header .logo a {
 	.bricks-wrapper .featured-grid {
 		width: 100%;
 	}
+	.entry-excerpt {
+		display: none;
+	}
 
 }
 
