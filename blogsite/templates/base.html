@@ -75,23 +75,23 @@
     
                     <nav id="main-nav-wrap">
                         <ul class="main-navigation sf-menu ">
-                            <li>
+                            <li class="menu-li">
                                 <a href="/">博客</a>
                             </li>
                                
-                            <li>
+                            <li class="menu-li">
                                 <a href="/about/">关于</a>
                             </li>
                             {% if not user.is_authenticated %}
-                                <li>
+                                <li class="menu-li">
                                     <a href="{% url 'login' %}?from={{ request.get_full_path }}">登录</a>
                                 </li>
-                                <li>
+                                <li class="menu-li">
                                     <a href="{% url 'register' %}?from={{ request.get_full_path }}">注册</a>
                                 </li>
                             {% else %}
                                 <li class="has-children">
-                                    <a href="#" title="">{{ user.get_fullname_or_username }}</a>
+                                    <a href="#" title=""><img width="30" height="30" class="menu-avatar" src="{{user.profile.avatar.url}}" alt="{{ user.get_fullname_or_username }}"></a>
                                     <ul class="sub-menu">
                                         <li><a href="{% url 'user_info' %}?from={{ request.get_full_path }}">个人资料</a></li>
                                         {% if user.is_editor or user.is_moderator or user.is_superuser %}
