@@ -24,7 +24,6 @@ body {
 }
 
 .container{
-    overflow: scroll;
     height: 100%;
 }
 
@@ -52,7 +51,6 @@ body {
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
     transform: translate( -50%, -60%);
-    overflow: scroll;
 }
  
 #name_trip {

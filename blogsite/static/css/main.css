@@ -586,7 +586,6 @@ select {
 	padding: 1.5rem 2.5rem;
 	border: 0;
 	outline: none;
-	vertical-align: middle;
 	color: rgba(0, 0, 0, 0.7);
 	font-family: "roboto-regular", sans-serif, KaiTi, "KaiTi_GB2312", 楷体, STKaiti ;
 	font-size: 1.5rem;
@@ -1749,7 +1748,6 @@ header .logo a {
 	padding-top: 0;
 	position: relative;
 	display: inline-block;
-	float: left;
 	margin-right: 22px;
 	/* padding: 0; */
 }
