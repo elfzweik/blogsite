@@ -2513,7 +2513,7 @@ header .logo a {
 		width: 100%;
 	}
 }
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 420px) {
 	.bricks-wrapper .brick {
 		width: 50% ;
 		float: none ;
