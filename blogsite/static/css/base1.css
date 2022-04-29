@@ -353,6 +353,8 @@ textarea {
 	width: 94%;
 	max-width: 1170px;
 	margin: 0 auto;
+	padding-left: 30px;
+	padding-right: 30px;
 }
 
 .row:before,
@@ -446,8 +448,8 @@ textarea {
  * --------------------------------------------------------------- */
 @media screen and (max-width:1024px) {
 	.row .row {
-		margin-left: -18px;
-		margin-right: -18px;
+		margin-left: 30px;
+		margin-right: 30px;
 	}
 
 	[class*="col-"] {
@@ -506,7 +508,7 @@ textarea {
 /* --------------------------------------------------------------- 
  * large mobile devices - (_grid.scss)
  * --------------------------------------------------------------- */
-@media screen and (max-width:300px) {
+@media screen and (max-width:600px) {
 	.row {
 		padding-left: 5px;
 		padding-right: 5px;
