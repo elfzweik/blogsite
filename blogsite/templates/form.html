@@ -48,7 +48,7 @@
                     <div id="loginDiv">
                         {% if user.is_authenticated %}
                         <form action="" method="POST", enctype="multipart/form-data">
-                            <h1>{{user.username}}</h1><br>
+                            <h1 style="text-align:center; color:#f0edf3">{{user.username}}</h1><br>
                             <div style="text-align: center">
                                 {% if user.profile.avatar %}
                                     <img src="{{user.profile.avatar.url}}" alt="" id="avatar"><br>
