@@ -16,3 +16,8 @@ def get_fullname_or_username(self):
         return "%s %s" % (self.first_name, self.last_name) if (self.first_name !='' or self.last_name != '') else self.username
     return "%s%s" % (self.last_name, self.first_name) if (self.first_name !='' or self.last_name != '') else self.username
 User.get_fullname_or_username = get_fullname_or_username
+
+def is_moderator(self):
+    return self.has_perm('wagtailadmin.access_admin')
+User.is_moderator = is_moderator
+        

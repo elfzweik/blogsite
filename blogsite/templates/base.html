@@ -54,6 +54,8 @@
     </head>
 
     <body id="top">
+
+        
                 <!-- header 
         ================================================== -->
         <header class="short-header">
@@ -94,7 +96,7 @@
                                     <a href="#" title=""><img width="30" height="30" class="menu-avatar" src="{{user.profile.avatar.url}}" alt="{{ user.get_fullname_or_username }}"></a>
                                     <ul class="sub-menu">
                                         <li><a href="{% url 'user_info' %}?from={{ request.get_full_path }}">个人资料</a></li>
-                                        {% if user.is_editor or user.is_moderator or user.is_superuser %}
+                                        {% if user.is_moderator or user.is_superuser %}
                                         <li><a href="{% url 'wagtailadmin_home' %}">后台管理</a></li>
                                         {% endif %}
                                         <li><a href="{% url 'logout' %}?from={{ request.get_full_path }}">退出登录</a></li>
