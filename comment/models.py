@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
+from wagtail.core.fields import RichTextField
 
 # Create your models here.
 class Comment(models.Model):
@@ -9,7 +10,7 @@ class Comment(models.Model):
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
 
-    text = models.TextField()
+    text = RichTextField()
     comment_time = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, related_name="comments", on_delete=models.CASCADE)
 

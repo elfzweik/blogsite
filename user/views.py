@@ -4,6 +4,8 @@ from django.contrib import auth
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.http import JsonResponse
+
+from comment.forms import CommentForm
 from .forms import LoginForm, RegForm, ChangeNameForm, BindEmailForm, ChangeAvatarForm, ChangePasswordForm
 from random import randint
 from .models import Profile
@@ -36,8 +38,10 @@ def login(request):
             return redirect(redirect_to, '/')
     else:
         login_form = LoginForm()
+        comment_form = CommentForm()
 
     context = {}
+    context['form'] = comment_form
     context['login_form'] = login_form
     context['return_back_url'] = redirect_to
     return render(request, 'user/login.html', context)

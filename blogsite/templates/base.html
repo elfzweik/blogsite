@@ -1,5 +1,5 @@
 {% load static wagtailuserbar %}
-
+{% load notifications_tags %}
 <!DOCTYPE html>
 <html class="no-js" lang="en">
     <head>
@@ -91,12 +91,19 @@
                                 <li class="menu-li">
                                     <a href="{% url 'register' %}?from={{ request.get_full_path }}">注册</a>
                                 </li>
-                            {% else %}
+                            {% else %}  
+                                {% notifications_unread as unread_count %}
                                 <li class="has-children">
-                                    <a href="#" title=""><img width="30" height="30" class="menu-avatar" src="{{user.profile.avatar.url}}" alt="{{ user.get_fullname_or_username }}"></a>
+                                    <div class="unread-notification">
+                                        <a href="#" title="">
+                                            <img width="30" height="30" class="menu-avatar" src="{{user.profile.avatar.url}}" alt="{{ user.get_fullname_or_username }}">
+                                        </a>
+                                    </div>
+                                    <span class="badge unread-count live_notify_badge">{% if unread_count > 0 %}{{ unread_count }}{% endif %}</span>
                                     <ul class="sub-menu">
                                         <li><a href="{% url 'user_info' %}?from={{ request.get_full_path }}">个人资料</a></li>
                                         {% if user.is_moderator or user.is_superuser %}
+                                        <li><a href="{% url 'my_notifications' %}">我的消息 <span class="badge unread-count live_notify_badge">{% if unread_count > 0 %}{{ unread_count }}{% endif %}</span></a></li>
                                         <li><a href="{% url 'wagtailadmin_home' %}">后台管理</a></li>
                                         {% endif %}
                                         <li><a href="{% url 'logout' %}?from={{ request.get_full_path }}">退出登录</a></li>
