@@ -17,8 +17,7 @@ def send_notification(sender, instance, **kwargs):
         recipient = instance.content_object.get_user()
         if instance.content_type.model == 'blogdetailpage':
             blog = instance.content_object
-            verb = '{0} 评论了你的《{1}》'.format(
-                instance.user.get_fullname_or_username(), 
+            verb = '评论了你的《{0}》'.format( 
                 blog.title
             )
         else:
@@ -26,8 +25,7 @@ def send_notification(sender, instance, **kwargs):
     else:
         # 回复
         recipient = instance.reply_to
-        verb = '{0} 回复了你的评论“{1}”'.format(
-                instance.user.get_fullname_or_username(), 
+        verb = '回复了你的评论“{0}”'.format(
                 strip_tags(instance.parent.text)
             )
     url = instance.content_object.get_url() + "#comment_" + str(instance.pk)
