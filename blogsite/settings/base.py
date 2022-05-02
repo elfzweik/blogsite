@@ -31,8 +31,9 @@ INSTALLED_APPS = [
     'blog',
     'user',
     'comment',
+    'my_notifications',
     
-    
+    'notifications',
     'ckeditor',
     "wagtail.contrib.table_block",
     'wagtailmarkdown',
@@ -185,6 +186,12 @@ CKEDITOR_CONFIGS = {
         'resize_enabled': False,
     }
 }
+
+# django-notifications-hq设置
+DJANGO_NOTIFICATIONS_CONFIG = { 
+    'USE_JSONFIELD': True,
+}
+
 # Wagtail settings
 
 WAGTAIL_SITE_NAME = "blogsite"

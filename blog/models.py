@@ -1,3 +1,4 @@
+from audioop import reverse
 from django import forms
 from django.db import models
 from django.contrib.auth.models import User
@@ -184,6 +185,15 @@ class BlogDetailPage(Page):
             return(self.get_prev_sibling())
         except self.DoesNotExist:
             return(None) 
+    
+    def get_url(self):
+        return self.url
+        
+    def get_user(self):
+        return self.author
+
+    def get_email(self):
+        return self.author.email
     
 
     search_fields = Page.search_fields + [

@@ -847,3 +847,11 @@ img#caption-id{
     margin-left: 0px;
     height: 65px;
 }
+
+.unread-count {
+	background-color: #d9534f !important;
+}
+
+.unread-notification {
+	float: left;
+}

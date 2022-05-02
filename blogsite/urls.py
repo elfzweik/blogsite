@@ -19,7 +19,8 @@ urlpatterns = [
     
     path('update_comment', comment_views.update_comment, name='update_comment'),
     path('user/', include('user.urls')),
-
+    path('notifications/', include('notifications.urls', namespace = 'notifications')),
+    path('my_notifications/', include('my_notifications.urls')),
 ]
 
 
