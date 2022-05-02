@@ -9,3 +9,21 @@
 .notifications {
     margin-top: 1em;
 }
+
+.notifications li {
+    margin-bottom: 1em;
+}
+
+.notifications li .avatar {
+	left: 0;
+	display: inline-block;
+	height: 6rem;
+	width: 6rem;
+}
+
+img.avatar {
+	margin-top: 0.6rem;
+	height: 6rem;
+	width: 6rem;
+	border-radius: 100%;
+}
