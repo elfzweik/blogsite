@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'user',
     'comment',
     'my_notifications',
+    'likes',
     
     'notifications',
     'ckeditor',

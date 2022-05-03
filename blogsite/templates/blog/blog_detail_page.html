@@ -3,6 +3,7 @@
 {% load static wagtailuserbar %}
 {% load wagtailimages_tags wagtailcore_tags %}
 {% load comment_tags %}
+{% load like_tags %}
 
 
 {% block header %}
@@ -75,7 +76,6 @@
 	
 
 				</article>
-   		
 
 			</div> <!-- end col-twelve -->
         </div> <!-- end row -->		
@@ -87,6 +87,10 @@
                     <div class="respond">
 
                         <h3>Leave a Comment</h3>
+                        <div class="like" onclick="likeChange(this, '{% get_content_type self %}', {{ self.pk }})">
+                            <span class="glyphicon glyphicon-heart {% get_like_status self %}"></span>
+                            <span class="liked_num">  {% get_like_count self %}</span>
+                        </div>
                         {% if user.is_authenticated %}
                             <form id="comment_form-id" action="{% url 'update_comment' %}" method="POST">
                                 <fieldset>
@@ -163,6 +167,10 @@
                 
                                     <div class="comment-info">
                                         <cite id="commentor-{{comment.pk}}">{{comment.user.get_fullname_or_username}}</cite>
+                                        <div class="like" onclick="likeChange(this, '{% get_content_type comment %}', {{ comment.pk }})">
+                                            <span class="glyphicon glyphicon-heart {% get_like_status comment %}"></span>
+                                            <span class="liked_num">  {% get_like_count comment %}</span>
+                                        </div>
                 
                                         <div class="comment-meta">
                                         <time class="comment-time" id="commnet-time-id" datetime="2014-07-12T23:05">{{ comment.comment_time|date:"Y-m-d H:i:s" }}</time>
@@ -192,6 +200,10 @@
                                                                 <path d="M6 12.796V3.204L11.481 8 6 12.796zm.659.753 5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753z"/>
                                                             </svg>
                                                          {{ reply.reply_to.get_fullname_or_username}}</cite>
+                                                    <div class="like" onclick="likeChange(this, '{% get_content_type reply %}', {{ reply.pk }})">
+                                                        <span class="glyphicon glyphicon-heart {% get_like_status reply %}"></span>
+                                                        <span class="liked_num">  {% get_like_count reply %}</span>
+                                                    </div>
 
                                                     <div class="comment-meta" id="comment-time-id">
                                                         <time class="comment-time"  datetime="2014-07-12T25:05">{{ reply.comment_time|date:"Y-m-d H:i:s" }}</time>
@@ -293,18 +305,22 @@
                                                     '<div class="comment-content">'+
                                                         '<div class="comment-info">'+
                                                             '<cite id="commentor-{2}">{3}</cite>'+
+                                                            '<div class="like" onclick="likeChange(this, \'{5}\', {2})">' +
+                                                                '<span class="glyphicon glyphicon-heart "></span>' +
+                                                                '<span class="liked_num">  0</span>' +
+                                                            '</div>' +
                                                             '<div class="comment-meta">'+
                                                                 '<time class="comment-time">{4}</time>' +
                                                                 '<span class="sep">/</span>' +
-                                                                '<a class="reply" href="javascript:reply({5};">Reply</a>' +
+                                                                '<a class="reply" href="javascript:reply({2};">Reply</a>' +
                                                             '</div>' +
                                                         '</div>' +
                                                         '<div class="comment-text">' +
-                                                            '<p id="comment_{6}"> {0}</p>'+
+                                                            '<p id="comment_{2}"> {0}</p>'+
                                                         '</div>' +
                                                     '</div>'+
                                                 '</li>';
-                            comment_html = comment_html.format(data['text'], data["avatar"], data["pk"], data["username"], timeFormat(data['comment_time']), data["pk"], data['pk']);
+                            comment_html = comment_html.format(data['text'], data["avatar"], data["pk"], data["username"], timeFormat(data['comment_time']), data["content_type"]);
                             console.log(comment_html);
                             $("#commentlist-id").prepend(comment_html);
                         }else{ 
@@ -321,6 +337,10 @@
                                                                     '<path d="M6 12.796V3.204L11.481 8 6 12.796zm.659.753 5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753z"/>'+
                                                                 '</svg>' +
                                                                 ' {4}</cite>'+
+                                                            '<div class="like" onclick="likeChange(this, \'{7}\', {{ reply.pk }})">' +
+                                                                '<span class="glyphicon glyphicon-heart "></span>' +
+                                                                '<span class="liked_num">  0</span>' +
+                                                            '</div>' +
                                                             '<div class="comment-meta" >'+
                                                                 '<time class="comment-time">{5} </time>'+
                                                                 '<span class="sep">/</span>'+
@@ -328,12 +348,12 @@
                                                             '</div>'+
                                                         '</div>'+
                                                         '<div class="comment-text" id="comment-text-id">'+
-                                                            '<p id="comment_{7}">{0}</p>'+
+                                                            '<p id="comment_{6}">{0}</p>'+
                                                         '</div>'+
                                                     '</div>'+
                                                 '</li>'+
                                             '</ul>';
-                            reply_html = reply_html.format(data['text'], data['avatar'], data['pk'], data['username'], data['reply_to'], timeFormat(data['comment_time']), data['root_pk'], data['root_pk']);
+                            reply_html = reply_html.format(data['text'], data['avatar'], data['pk'], data['username'], data['reply_to'], timeFormat(data['comment_time']), data['root_pk'], data['content_type']);
                             console.log(reply_html);
                             $("#root_" + data['root_pk']).append(reply_html);
                         }
@@ -342,7 +362,7 @@
                         //$('#id_text').setData('');
                         $('#id_text').val('');
                         $('#reply-content-container-id').hide();
-                        $('#reply-comment-id').val('0');
+                        $('#reply_comment_id').val('0');
 
                         $("#comment_error").text('吐槽已发送');
                     }else{
@@ -358,6 +378,44 @@
             console.log("ajax finished.");
             return false;
         });
+        function likeChange(obj, content_type, object_id){
+            var is_like = obj.getElementsByClassName('active').length == 0;
+            console.log(is_like, content_type, object_id);
+            $.ajax({
+                url: "{% url 'like_change' %}",
+                type: 'GET',
+                data: {
+                    content_type: content_type,
+                    object_id: object_id,
+                    is_like: is_like
+                },
+                cache: false,
+                success: function(data){
+                    console.log(data)
+                    if(data['status']=='SUCCESS'){
+                        // 更新点赞状态
+                        var element = $(obj.getElementsByClassName('glyphicon-heart'));
+                        if(is_like){
+                            element.addClass('active');
+                        }else{
+                            element.removeClass('active');
+                        }
+                        // 更新点赞数量
+                        var liked_num = $(obj.getElementsByClassName('liked_num'));
+                        liked_num.text(data['liked_num']);
+                    }//else{
+                        //if(data['code']==400){
+                            //$('#login_modal').modal('show');
+                        //}else{
+                            //alert(data['message']);    
+                        //}                        
+                    //}
+                },
+                error: function(xhr){
+                    console.log(xhr)
+                }
+            });
+        }
         if (window.location.hash) {
             $('html').animate({
                 scrollTop: $(window.location.hash).offset().top - 60

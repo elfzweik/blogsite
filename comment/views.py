@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.contenttypes.models import ContentType
 from django.urls import reverse
 from django.http import JsonResponse
-from .models import Comment
+from .models import MyComment
 from .forms import CommentForm
 
 def update_comment(request):
@@ -12,7 +12,7 @@ def update_comment(request):
 
     if comment_form.is_valid():
         # 检查通过，保存数据
-        comment = Comment()
+        comment = MyComment()
         comment.user = comment_form.cleaned_data['user']
         comment.text = comment_form.cleaned_data['text']
         comment.content_object = comment_form.cleaned_data['content_object']

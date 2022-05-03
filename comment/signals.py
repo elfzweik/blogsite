@@ -6,10 +6,10 @@ from django.shortcuts import render
 from django.core.mail import send_mail
 from django.conf import settings
 from notifications.signals import notify
-from .models import Comment
+from .models import MyComment
 
 
-@receiver(post_save, sender=Comment)
+@receiver(post_save, sender=MyComment)
 def send_notification(sender, instance, **kwargs):
     # 发送站内消息
     if instance.reply_to is None:
