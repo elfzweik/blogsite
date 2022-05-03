@@ -27,3 +27,7 @@ img.avatar {
 	width: 6rem;
 	border-radius: 100%;
 }
+
+h3.user-name-avatar{
+	display: inline-block;
+}
