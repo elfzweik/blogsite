@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import ObjectDoesNotExist
 from ckeditor.widgets import CKEditorWidget
-from .models import Comment
+from .models import MyComment
 
 
 
@@ -44,8 +44,8 @@ class CommentForm(forms.Form):
             raise forms.ValidationError('回复出错')
         elif reply_comment_id == 0:
             self.cleaned_data['parent'] = None
-        elif Comment.objects.filter(pk=reply_comment_id).exists():
-            self.cleaned_data['parent'] = Comment.objects.get(pk=reply_comment_id)
+        elif MyComment.objects.filter(pk=reply_comment_id).exists():
+            self.cleaned_data['parent'] = MyComment.objects.get(pk=reply_comment_id)
         else:
             raise forms.ValidationError('回复出错')
         return reply_comment_id

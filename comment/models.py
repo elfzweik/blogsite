@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from wagtail.core.fields import RichTextField
 
 # Create your models here.
-class Comment(models.Model):
+class MyComment(models.Model):
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
@@ -20,6 +20,12 @@ class Comment(models.Model):
     
     def __str__(self):
         return self.text
+
+    def get_url(self):
+        return self.content_object.get_url()
+
+    def get_user(self):
+        return self.user
 
     class Meta:
         ordering = ['comment_time']

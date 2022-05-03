@@ -855,3 +855,19 @@ img#caption-id{
 .unread-notification {
 	float: left;
 }
+
+.like {
+    color: #337ab7;
+    cursor: pointer;
+    display: inline-block;
+	margin-left: 1em;
+    padding: 0.5em 0.3em;
+}
+
+.like .active{
+    color: #f22;
+}
+
+.respond h3{
+	display: inline-block;
+}
