@@ -844,7 +844,8 @@ textarea {
 
 img#caption-id{
     margin-left: 0px;
-    height: 65px;
+    height: 9rem;
+	padding-bottom: 14px;
 }
 
 .unread-count {
