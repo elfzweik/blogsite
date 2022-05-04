@@ -115,7 +115,15 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    },
+    ''''slave': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'blogsite_db',
+        'USER': 'elf',
+        'PASSWORD': 'Ig2rdf@oyx',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    },'''
 }
 
 """
