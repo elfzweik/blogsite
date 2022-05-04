@@ -137,7 +137,7 @@ class BlogDetailPage(Page):
 
     custom_title = models.CharField('Title', max_length=80, help_text='文章标题')
     #author = models.CharField("Author", max_length=255, default="Wang Zhenxuan")
-    author = models.ForeignKey(User,on_delete=models.DO_NOTHING)
+    author = models.ForeignKey(User,on_delete=models.CASCADE)
     create_date = models.DateField("Create date", auto_now_add= True)
     update_date = models.DateField("Update date", auto_now=True)
     intro = models.CharField('Introduction', max_length=500, help_text='文章简介')
