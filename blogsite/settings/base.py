@@ -143,7 +143,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+SOUTH_TESTS_MIGRATE = False
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
