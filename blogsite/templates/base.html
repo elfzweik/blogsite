@@ -255,14 +255,14 @@
             }
             $('.live_notify_badge').text(unread_count);
         }
-        function numFormat(num){
+        function numberFormat(num){
             return ('0000000' + num).substr(-6);
         }
 
         $(document).ready(function(){
             console.log($("#hits").html());
-            var hits_string = numFormat($("#hits").html());
-            var visitor_string = numFormat($("#visitor").html());
+            var hits_string = numberFormat($("#hits").html());
+            var visitor_string = numberFormat($("#visitor").html());
             console.log(hits_string);
             var html1='';
             var html2='';
