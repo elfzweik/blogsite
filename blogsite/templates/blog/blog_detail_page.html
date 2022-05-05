@@ -4,7 +4,7 @@
 {% load wagtailimages_tags wagtailcore_tags %}
 {% load comment_tags %}
 {% load like_tags %}
-{% load cache %}
+
 
 {% block header %}
 <script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
@@ -19,7 +19,7 @@
     <section id="content-wrap" class="blog-single">
         <div class="row">
             <div class="col-twelve">
-            {% cache 500 article %}   
+              
                 <article class="format-standard">
                     <div class="content-media">
 						<div class="post-thumb">
@@ -75,7 +75,7 @@
 	  				</div>
 	
 				</article>
-            {% endcache %}
+           
 			</div> <!-- end col-twelve -->
         </div> <!-- end row -->		
     
