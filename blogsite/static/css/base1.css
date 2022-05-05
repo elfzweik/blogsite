@@ -871,3 +871,8 @@ img#caption-id{
 .respond h3{
 	display: inline-block;
 }
+
+img.visits{
+	display: inline-block;
+	height: 2em;
+}

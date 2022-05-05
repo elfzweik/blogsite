@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from audioop import reverse
 from django import forms
 from django.db import models
@@ -24,6 +25,7 @@ from wagtail.embeds.blocks import EmbedBlock
 from wagtail.contrib.table_block.blocks import TableBlock
 from wagtailcodeblock.blocks import CodeBlock
 from streams.blocks import CardBlock
+from visitor_record.utils import count_visits
 
 # Create your models here.
 class BlogListingPage(Page):
@@ -68,12 +70,27 @@ class BlogListingPage(Page):
         elif paginator.num_pages - page_range[-1] == 1:
             page_range.append(paginator.num_pages)
 
-        
+        data = count_visits(request, self)
+
+        context['total_hits'] = data['total_hits']
+        context['total_visitors'] =data['total_vistors']
+        context['cookie'] = data['cookie']
         context['posts'] = blogpage
         context['page_range'] = page_range
         context['latest_posts'] = latest_blogs
 
         return context
+
+    def serve(self, request):
+        context = self.get_context(request)
+        template = self.get_template(request)
+        
+        response = render(request, template, context)
+        response.set_cookie(context['cookie'], 'true', max_age=300)
+        return response
+
+    class Meta:
+        verbose_name = "博客"
 
 class BlogPageTag(TaggedItemBase):
     content_object = ParentalKey(
@@ -116,28 +133,52 @@ class BlogTagIndexPage(Page):
 
 
         # Update template context
+        data = count_visits(request, self)
+
         context = super().get_context(request)
         context['posts'] = blogpages
         context['page_range']=page_range
 
+        context['total_hits'] = data['total_hits']
+        context['total_visitors'] =data['total_vistors']
+        context['cookie'] = data['cookie']
         return context
 
-
+    def serve(self, request):
+        context = self.get_context(request)
+        template = self.get_template(request)
+        
+        response = render(request, template, context)
+        response.set_cookie(context['cookie'], 'true', max_age=300)
+        return response
 
 class BlogDetailPage(Page):
     template = "blog/blog_detail_page.html"
-
+    
     def get_context(self, request):
 
         authorname=self.author.get_fullname_or_username()
-        context = super().get_context(request)
-        context['author']=authorname
+        data = count_visits(request, self)
 
+        context = super().get_context(request)
+        context['total_hits'] = data['total_hits']
+        context['total_visitors'] =data['total_vistors']
+        context['cookie'] = data['cookie']
+        context['author']=authorname
         return context
+    
+    def serve(self, request):
+        context = self.get_context(request)
+        template = self.get_template(request)
+        
+        response = render(request, template, context)
+        response.set_cookie(context['cookie'], 'true', max_age=300)
+        return response
+        
 
     custom_title = models.CharField('Title', max_length=60, help_text='文章标题')
     #author = models.CharField("Author", max_length=255, default="Wang Zhenxuan")
-    author = models.ForeignKey(User,on_delete=models.CASCADE)
+    author = models.ForeignKey(User,on_delete=models.PROTECT)
     create_date = models.DateField("Create date", auto_now_add= True)
     update_date = models.DateField("Update date", auto_now=True)
     intro = models.CharField('Introduction', max_length=500, help_text='文章简介')
