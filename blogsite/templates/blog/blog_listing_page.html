@@ -2,7 +2,7 @@
 
 {% load wagtailimages_tags wagtailcore_tags%}
 {% load like_tags %}
-{% load cache %}
+
 
 {% block content %}
 
@@ -20,7 +20,7 @@
     <!-- masonry
     ================================================== -->
     <section id="bricks">
-    {% cache 500 masonry %}
+    
         <div class="row masonry">
 
             <!-- brick-wrapper -->
@@ -146,7 +146,7 @@
            </nav>
  
         </div>
-    {% endcache %}
+    
     </section> <!-- end bricks -->
     
 {% endblock %}

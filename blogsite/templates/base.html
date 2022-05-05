@@ -1,6 +1,6 @@
 {% load static wagtailuserbar %}
 {% load notifications_tags %}
-{% load cache %}
+
 <!DOCTYPE html>
 <html class="no-js" lang="en">
     <head>
@@ -69,14 +69,14 @@
                 <!--<div class="logo">
                     <a href="/">朝花</a>
                 </div> -->
-                {% cache 691200 logo %}
+                
                 <a href="/"><div style="margin-left: 0px; margin-top: 0px; float:left;" >
                     <img id="caption-id" src="{% static 'WechatIMG172.png'%}" alt=""/>       </div></a>
                 <!-- <div style="margin-left: 100px; margin-top: 10px; float:left" >
                     <h1 class="slide-title zhuanshu" style="font-weight: 900;">朝 花 夕 拾</h1> 
     
                 </div>-->
-                {% endcache %}
+                
                     <nav id="main-nav-wrap">
                         <ul class="main-navigation sf-menu ">
                             <li class="menu-li">
@@ -141,7 +141,7 @@
             <!-- % wagtailuserbar % -->
     
             {% block content %}{% endblock %}
-            {% cache 691200 footer %}
+            
             <!-- footer
             ================================================== -->
             <footer>
@@ -238,7 +238,7 @@
         </div> <!-- end footer-bottom -->
 
         </footer>
-        {% endcache %}
+        
         <div id="preloader">
             <div id="loader"></div>
         </div>
