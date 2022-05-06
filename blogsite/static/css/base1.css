@@ -876,3 +876,7 @@ img.visits{
 	display: inline-block;
 	height: 2em;
 }
+
+.col-two ul{
+	padding-inline-start: 0rem;
+}

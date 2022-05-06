@@ -29,7 +29,7 @@
                                     <div class="avatar">
                                         <img width="50" height="50" class="avatar" src="{{notification.actor.profile.avatar.url}}" alt="">
                                     </div>
-                                    {{ notification.actor.get_fullname_or_username }}
+                                    &nbsp;&nbsp;{{ notification.actor.get_fullname_or_username }}
                                     [{{ notification.timesince }}之前] 
                                     <a href="{% url 'my_notification' notification.pk %}">{{ notification.verb }}</a>
                                 </li>
