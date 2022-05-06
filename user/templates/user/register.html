@@ -22,8 +22,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="/"><div style="margin-left: 0px; margin-top: 20px; float:left;" >
-                        <img id="caption-id" src="{% static 'WechatIMG172.png'%}" alt=""/>       </div></a>
+                    <a href="/"><img id="caption-id" src="{% static 'WechatIMG172.png'%}" alt=""/></a>
                     
                 </div>
                 <div id="navbar-collapse" class="collapse navbar-collapse pull-right">
@@ -51,12 +50,8 @@
                             <h1 id="panel-title">注册</h1>
                             {% for field in reg_form %}
                                 <div class="form-group">
-                                    
-                                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                                    
-                                    
-                                        {{ field }}
-                                    
+                                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                    {{ field }}
                                 </div>   
                                 <p class="error-message">{{ field.errors.as_text }}</p>
                             {% endfor %}

@@ -23,8 +23,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="/"><div style="margin-left: 0px; margin-top: 20px; float:left;" >
-                        <img id="caption-id" src="{% static 'WechatIMG84.png'%}" alt=""/>       </div></a>
+                    <a href="/"><img id="caption-id" src="{% static 'WechatIMG84.png'%}" alt=""/></a>
                 </div>
                 <div id="navbar-collapse" class="collapse navbar-collapse pull-right">
                     <ul class="nav navbar-nav">
@@ -43,7 +42,6 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-xs-1 col-sm-3"></div>
                 <div class="col-xs-10 col-sm-6">
                     <div id="loginDiv">
                         {% if user.is_authenticated %}
@@ -55,13 +53,15 @@
                                 {% endif %}   
                                 
                             </div>
-
+                            <br>
                             {% csrf_token %}
                             {% for field in form %}
-                                {% if not field.is_hidden %}
-                                    <label class="items" for="{{ field.id_for_label }}">{{ field.label }}</label>
-                                {% endif %}  
-                                {{ field }}  
+                                <div class="panel-items">
+                                    {% if not field.is_hidden %}
+                                        <label class="items" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                    {% endif %}  
+                                    {{ field }}
+                                </div>  
                                 <p class="text-danger">{{ field.errors.as_text }}</p>
                             {% endfor %}    
                             <span id="tip" class="text-danger"></span>

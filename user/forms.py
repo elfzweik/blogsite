@@ -156,7 +156,7 @@ class ChangePasswordForm(forms.Form):
         )
     )
     new_password_again = forms.CharField(
-        label='请再次输入新的密码', 
+        label='再输一次', 
         widget=forms.PasswordInput(
             attrs={'class':'form-control', 'placeholder':'再次输入新密码'}
         )

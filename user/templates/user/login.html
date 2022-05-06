@@ -27,8 +27,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="/"><div style="margin-left: 0px; margin-top: 20px; float:left;" >
-                        <img id="caption-id" src="{% static 'WechatIMG172.png'%}" alt=""/>       </div></a>
+                    <a href="/"><img id="caption-id" src="{% static 'WechatIMG172.png'%}" alt=""/></a>
                 </div>
                 <div id="navbar-collapse" class="collapse navbar-collapse pull-right">
                     <ul class="nav navbar-nav">
@@ -47,7 +46,6 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-xs-1 col-sm-3"></div>
                 <div class="col-xs-10 col-sm-6">
                     <div id="loginDiv">
                         
@@ -56,12 +54,8 @@
                             <h1 id="panel-title">登录</h1>
                             {% for field in login_form %}
                                 <div class="form-group">
-                                    <div class="col-xs-4">
-                                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                                    </div>
-                                    <div class="col-xs-8">
-                                        {{ field }}
-                                    </div>
+                                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                    {{ field }}
                                 </div>  
                                 <p class="text-danger">{{ field.errors.as_text }}</p>
                             {% endfor %}

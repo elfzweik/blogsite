@@ -21,8 +21,6 @@ body {
     -moz-background-size: 120% 120%;
 }
 
-
-
 .row{
     
     display: flex;
@@ -59,13 +57,13 @@ body {
 }
 
 #name_trip {
-    margin-left: 50px;
+    margin-left: 5rem;
     color: red;
 }
 
 form label{
     flex: 1 60px;
-    padding-right: 1rem;
+    padding-right: 2rem;
 }
 
 label {
@@ -99,6 +97,11 @@ input.form-control{
     margin-bottom: 20px;
 }
 
+p#avatar-hint {
+    color: azure;
+    margin: 1rem, 1rem, 1rem, 1rem;
+}
+
 .error-message {
     text-align: center;
     color: red;
@@ -116,37 +119,50 @@ input.form-control{
     color: #f0edf3
 }
 
+#caption-id{
+    margin-left:0px;
+    height: 9rem;
+	padding-bottom: 1.5rem;
+}
+
 .navbar {
     background-color: transparent !important;
     background: transparent;
     background-image: none;
     border-color: transparent !important;
-    margin: 0px 0px 30px 17px; 
 }
 
-#caption-id{
-    margin-left:0px;
-    height: 9rem;
-	padding-bottom: 14px;
+.navbar.navbar-inverse > div.container-fluid > div > button{
+    margin-right: 0.2rem !important;
+    margin-top: 2rem;
 }
 
-.navbar-nav>li>a{
-    display: table;
-    float: right;
-    font-family: "montserrat-regular", sans-serif, HeiTi, "Microsoft JhengHei", SimHei, STHeiti !important;
-    font-size: 15px !important;
+@media only screen and (max-width:1280px){
+    .navbar-nav>li>a{
+        display: table;
+        float: right;
+        font-family: "montserrat-regular", sans-serif, HeiTi, "Microsoft JhengHei", SimHei, STHeiti !important;
+        font-size: 1.5rem !important;
+    }
+    
+    #navbar-collapse.collapse.navbar-collapse.pull-right{
+        margin-top: 2.4rem;
+        margin-left: 1.7rem;
+        font-family: "montserrat-regular", sans-serif, HeiTi, "Microsoft JhengHei", SimHei, STHeiti !important;
+        font-size: 1.5rem !important;
+    }
+
+    .navbar {
+        margin: 0px 0px 30px 17px; 
+    }
+
 }
 
-#navbar-collapse.collapse.navbar-collapse.pull-right{
-    margin-top: 24px;
-    margin-left: 17px;
-    font-family: "montserrat-regular", sans-serif, HeiTi, "Microsoft JhengHei", SimHei, STHeiti !important;
-    font-size: 15px !important;
-}
+@media only screen and (max-width:420px){
+    .navbar.navbar-inverse{
+        margin-left: 0;
+    }
 
-p#avatar-hint {
-    color: azure;
-    margin: 1rem, 1rem, 1rem, 1rem;
+    
 }
-
 
