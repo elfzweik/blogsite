@@ -22,10 +22,6 @@ body {
     height: 100%;
 }
 
-.container{
-    
-}
-
 .row{
     height:100%;
     display: flex;
@@ -75,7 +71,7 @@ label.values {
     padding-right: 1rem;
     color: azure;
     text-align: right;
-    padding-right: 0.5rem;
+    padding-left: 1rem;
 }
 
 label.items{
@@ -83,11 +79,11 @@ label.items{
     padding-left: 1rem;
     color: azure;
     text-align: left;
-    padding-left: 0.5rem;
+    padding-right: 1rem;
 }
  
 input.form-control{
-    flex: 3 80px;
+    flex: 3 120px;
     margin-left: 15px;
     border-radius: 5px;
     border-style: hidden;
