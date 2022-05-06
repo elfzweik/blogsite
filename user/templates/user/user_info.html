@@ -23,8 +23,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="/"><div style="margin-left: 0px; margin-top: 20px; float:left;" >
-                        <img id="caption-id" src="{% static 'WechatIMG172.png'%}" alt=""/>       </div></a>
+                    <a href="/"><img id="caption-id" src="{% static 'WechatIMG172.png'%}" alt=""/> </a>
                 </div>
                 <div id="navbar-collapse" class="collapse navbar-collapse pull-right">
                     <ul class="nav navbar-nav">
@@ -40,7 +39,6 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-xs-1 col-sm-2"></div>
                 <div class="col-xs-10 col-sm-8">
                     <div id="loginDiv">
                         {% if user.is_authenticated %}
@@ -52,19 +50,19 @@
                                     {% endif %}
                                     <a href="{% url 'change_avatar' %}?from={{ request.get_full_path }}">修改头像</a>
                                 </div>
-
-                                <label class="items" for="id_last_name"><a href="{% url 'change_name' %}?from={{ request.get_full_path }}">姓</a></label>
-                                <label class="values">{{user.last_name}}</label>
-                                <br>
-
-                                <label class="items" for="id_first_name"><a href="{% url 'change_name' %}?from={{ request.get_full_path }}">名</a></label>
-                                <label class="values">{{user.first_name}}</label>
-                                <br>
-
-                                <label class="items" for="id_email"><a href="{% url 'bind_email' %}?from={{ request.get_full_path }}">邮箱</a></label>
-                                <label class="values">{{user.email}}</label>
-                                <br>
-                                <div style="text-align: center">
+                                <div class="panel-items">
+                                    <label class="items" for="id_last_name"><a href="{% url 'change_name' %}?from={{ request.get_full_path }}">姓</a></label>
+                                    <label class="values">{{user.last_name}}</label>
+                                </div>
+                                <div class="panel-items">
+                                    <label class="items" for="id_first_name"><a href="{% url 'change_name' %}?from={{ request.get_full_path }}">名</a></label>
+                                    <label class="values">{{user.first_name}}</label>
+                                </div>
+                                <div class="panel-items">
+                                    <label class="items" for="id_email"><a href="{% url 'bind_email' %}?from={{ request.get_full_path }}">邮箱</a></label>
+                                    <label class="values">{{user.email}}</label>
+                                </div>  
+                                <div class="return" style="text-align: center">
                                     <a href="{% url 'change_password' %}?from={{ request.get_full_path }}">修改密码</a>
                                     <br>
                                     <br>
