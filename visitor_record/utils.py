@@ -1,5 +1,6 @@
 from .models import *
 from django.utils import timezone
+from ipware import get_client_ip
 from django.contrib.contenttypes.models import ContentType
  
 #自定义的函数，不是视图
@@ -14,14 +15,14 @@ def count_visits(request, obj):       #修改网站访问量和访问ip等信息
         count_nums.save()
  
     # 记录访问ip和每个ip的次数
-    if 'HTTP_X_FORWARDED_FOR' in request.META:  # 获取ip
+    '''if 'HTTP_X_FORWARDED_FOR' in request.META:  # 获取ip
         client_ip = request.META['HTTP_X_FORWARDED_FOR']
         client_ip = client_ip.split(",")[0]  # 所以这里是真实的ip
     elif 'REMOTE_ADDR' in request.META:
         client_ip = request.META['REMOTE_ADDR']  # 这里获得代理ip
     else:
-        client_ip = request.META['HTTP_CLIENT_IP']
-
+        client_ip = request.META['HTTP_CLIENT_IP']'''
+    client_ip, is_routable = get_client_ip(request)
     ip_exist, created= Userip.objects.get_or_create(ip=str(client_ip))
     if not request.COOKIES.get(key):
         ip_exist.count += 1
