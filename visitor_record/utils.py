@@ -22,7 +22,7 @@ def count_visits(request, obj):       #修改网站访问量和访问ip等信息
         client_ip = request.META['REMOTE_ADDR']  # 这里获得代理ip
     else:
         client_ip = request.META['HTTP_CLIENT_IP']'''
-    client_ip, is_routable = get_client_ip(request,proxy_trusted_ips=['127.0.0.1'])
+    client_ip, is_routable = get_client_ip(request)
     ip_exist, created= Userip.objects.get_or_create(ip=str(client_ip))
     if not request.COOKIES.get(key):
         ip_exist.count += 1
