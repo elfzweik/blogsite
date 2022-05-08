@@ -14,13 +14,11 @@ def count_visits(request, obj):       #修改网站访问量和访问ip等信息
         count_nums.save()
  
     # 记录访问ip和每个ip的次数
-    '''if 'HTTP_X_FORWARDED_FOR' in request.META:  # 获取ip
+    if 'HTTP_X_FORWARDED_FOR' in request.META:  # 获取ip
         client_ip = request.META['HTTP_X_FORWARDED_FOR']
         client_ip = client_ip.split(",")[0]  # 所以这里是真实的ip
-    if client_ip == None or len(client_ip) == 0 or client_ip.lower() == 'unknown':
-        client_ip = ip
-        client_ip = request.META['REMOTE_ADDR']  # 这里获得代理ip'''
-    client_ip = request.get_host()
+    else:
+        client_ip = request.META['REMOTE_ADDR']  # 这里获得代理ip
 
     ip_exist, created= Userip.objects.get_or_create(ip=str(client_ip))
     if not request.COOKIES.get(key):
@@ -35,6 +33,6 @@ def count_visits(request, obj):       #修改网站访问量和访问ip等信息
     
     data['total_hits'] = count_nums.count
     data['total_vistors'] = Userip.objects.all().count()
-    data['client_ip'] = client_ip
     data['cookie']=key
+    data['client_ip']=client_ip
     return(data)
