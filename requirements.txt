@@ -4,3 +4,5 @@ django-notifications-hq==1.7.0
 django-ckeditor==6.2.0
 wagtail-markdown==0.8.0
 wagtailcodeblock==1.25.0.2
+psycopg2-binary==2.9.3
+djang-redis==5.2.0
