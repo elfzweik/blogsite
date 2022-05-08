@@ -17,8 +17,10 @@ def count_visits(request, obj):       #修改网站访问量和访问ip等信息
     if 'HTTP_X_FORWARDED_FOR' in request.META:  # 获取ip
         client_ip = request.META['HTTP_X_FORWARDED_FOR']
         client_ip = client_ip.split(",")[0]  # 所以这里是真实的ip
-    else:
+    elif 'REMOTE_ADDR' in request.META:
         client_ip = request.META['REMOTE_ADDR']  # 这里获得代理ip
+    else:
+        client_ip = request.META['HTTP_CLIENT_IP']
 
     ip_exist, created= Userip.objects.get_or_create(ip=str(client_ip))
     if not request.COOKIES.get(key):
@@ -30,7 +32,7 @@ def count_visits(request, obj):       #修改网站访问量和访问ip等信息
     today, created = DayNumber.objects.get_or_create(day=date)
     today.count += 1
     today.save()
-    
+    data['requestMETA']=request.META
     data['total_hits'] = count_nums.count
     data['total_vistors'] = Userip.objects.all().count()
     data['cookie']=key
