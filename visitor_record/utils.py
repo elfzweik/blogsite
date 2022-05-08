@@ -35,5 +35,6 @@ def count_visits(request, obj):       #修改网站访问量和访问ip等信息
     
     data['total_hits'] = count_nums.count
     data['total_vistors'] = Userip.objects.all().count()
+    data['client_ip'] = client_ip
     data['cookie']=key
     return(data)

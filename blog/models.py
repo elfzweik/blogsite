@@ -71,7 +71,7 @@ class BlogListingPage(Page):
             page_range.append(paginator.num_pages)
 
         data = count_visits(request, self)
-
+        context['client_ip'] = data['client_ip']
         context['total_hits'] = data['total_hits']
         context['total_visitors'] =data['total_vistors']
         context['cookie'] = data['cookie']
