@@ -4,7 +4,6 @@ from xml.etree.ElementInclude import include
 from .ip2Region import Ip2Region
 from .models import *
 from django.utils import timezone
-from ipware import get_client_ip
 from django.contrib.contenttypes.models import ContentType
  
 #自定义的函数，不是视图
