@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.http import JsonResponse
 from django.db.models import ObjectDoesNotExist
@@ -22,7 +23,8 @@ def like_change(request):
     # 获取数据
     user = request.user
     if not user.is_authenticated:
-        return ErrorResponse(400, 'you were not login')
+        user = User.objects.get(username = 'anonymous')
+        is_anonymous = True
 
     content_type = request.GET.get('content_type')
     object_id = int(request.GET.get('object_id'))
@@ -45,8 +47,14 @@ def like_change(request):
             like_count.save()
             return SuccessResponse(like_count.liked_num)
         else:
-            # 已点赞过，不能重复点赞
-            return ErrorResponse(402, '你已点过赞')
+            if is_anonymous:
+                like_count, created = LikeCount.objects.get_or_create(content_type=content_type, object_id=object_id)
+                like_count.liked_num += 1
+                like_count.save()
+                return SuccessResponse(like_count.liked_num)
+            else:
+                # 已点赞过，不能重复点赞
+                return ErrorResponse(402, '你已点过赞')
     else:
         # 要取消点赞
         if LikeRecord.objects.filter(content_type=content_type, object_id=object_id, user=user).exists():
