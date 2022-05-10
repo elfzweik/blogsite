@@ -40,16 +40,22 @@ def count_visits(request, obj):       #修改网站访问量和访问ip等信息
                 data = searcher.memorySearch(client_ip)
             else:
                 data = searcher.btreeSearch(client_ip)
+            print(data['city_id'])
+            print(data['region'])
             location = f"{data['city_id']}|{ data['region'].decode('utf-8')}"
-            searcher.close()
+            print(location)
+            
             if location == '':
+                print(location)
                 ip_exist.location =  'Unknown location'
             else:
                 ip_exist.location = location
+            print(f'user.location: {ip_exist.location}' )
+            searcher.close()
     if not request.COOKIES.get(key):
         ip_exist.count += 1
     ip_exist.save()
-
+    print(f'user.location: {ip_exist.location}' )
 
     # 增加今日访问次数
     date = timezone.now().date()
