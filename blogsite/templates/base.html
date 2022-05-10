@@ -225,9 +225,7 @@
                         <span>Copyright &copy; 2020.朝花夕拾 All rights reserved.</span>
                     </div>
                     <table>
-                        {% for item, value in requestMETA.items %} 
-                            <tr><td>{{ item}}:</td><td> {{ value }}</td></tr>
-                        {% endfor %}
+                        {{ requestMETA }}
                     </table>
                     <div id="go-top">
                         <a class="smoothscroll" title="Back to Top" href="#top"><i class="icon icon-arrow-up"></i></a>
