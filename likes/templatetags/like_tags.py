@@ -23,6 +23,12 @@ def get_like_status(context, obj):
         return ''
 
 @register.simple_tag
+def get_like_users(obj):
+    content_type = ContentType.objects.get_for_model(obj)
+    like_users = LikeRecord.objects.filter(content_type=content_type, object_id=obj.pk)
+    return like_users
+
+@register.simple_tag
 def get_content_type(obj):
     content_type = ContentType.objects.get_for_model(obj)
     return content_type.model

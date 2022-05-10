@@ -879,3 +879,8 @@ img.visits{
 .col-two ul{
 	padding-inline-start: 0rem;
 }
+
+.like_users{
+	color:rgb(52, 47, 47);
+	font-size: 12px;
+}
