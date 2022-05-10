@@ -57,7 +57,10 @@ def count_visits(request, obj):       #修改网站访问量和访问ip等信息
     today.count += 1
     today.save()
     tuple_dict = request.META.items
-    data['requestMETA']=tuple_dict
+    html = []
+    for k, v in tuple_dict:
+        html.append('<tr><td>%s</td><td>%s</td></tr>' % (k, v))
+    data['requestMETA']= html
     data['total_hits'] = count_nums.count
     data['total_vistors'] = Userip.objects.all().count()
     data['location'] = ip_exist.location
