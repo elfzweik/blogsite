@@ -56,6 +56,7 @@ def count_visits(request, obj):       #修改网站访问量和访问ip等信息
         database = IP2Location.IP2Location(os.path.join("/visitor_record/data", "IP2LOCATION-LITE-DB3.IPV6.BIN"))
         rec = database.get_all(client_ip)
         ip_exist.location = rec.country_long + '|' + rec.region + '|' + rec.city
+        print(client_ip, ip_exist.location)
     if not request.COOKIES.get(key):
         ip_exist.count += 1
     ip_exist.save()
@@ -67,7 +68,7 @@ def count_visits(request, obj):       #修改网站访问量和访问ip等信息
     today.count += 1
     today.save()
     tuple_dict = request.META
-    
+    data['requestMETA'] = request.META
     data['requestMETA']= tuple_dict
     data['total_hits'] = count_nums.count
     data['total_vistors'] = Userip.objects.all().count()
