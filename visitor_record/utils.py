@@ -1,6 +1,6 @@
 import struct, sys, os, time
 from xml.etree.ElementInclude import include
-
+import IP2Location
 from .ip2Region import Ip2Region
 from .models import *
 from django.utils import timezone
@@ -30,7 +30,7 @@ def count_visits(request, obj):       #修改网站访问量和访问ip等信息
   
     ip_exist, created= Userip.objects.get_or_create(ip=str(client_ip))
     if created:
-        dbfile = './visitor_record/data/ip2region.db'
+        '''dbfile = './visitor_record/data/ip2region.db'
         algorithm = 'b-tree'
         searcher = Ip2Region(dbfile)
         if searcher.isip(client_ip):
@@ -52,10 +52,14 @@ def count_visits(request, obj):       #修改网站访问量和访问ip等信息
                 ip_exist.location = location
             print(f'user.location: {ip_exist.location}' )
             searcher.close()
+            '''
+        database = IP2Location.IP2Location(os.path.join("/visitor_record/data", "IP2LOCATION-LITE-DB3.IPV6.BIN"))
+        rec = database.get_all(client_ip)
+        ip_exist.location = rec.country_long + '|' + rec.region + '|' + rec.city
     if not request.COOKIES.get(key):
         ip_exist.count += 1
     ip_exist.save()
-    print(f'user.location: {ip_exist.location}' )
+    
 
     # 增加今日访问次数
     date = timezone.now().date()
