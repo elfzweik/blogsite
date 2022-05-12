@@ -5,6 +5,7 @@ from .ip2Region import Ip2Region
 from .models import *
 from django.utils import timezone
 from django.contrib.contenttypes.models import ContentType
+from blogsite.settings.base import BASE_DIR
  
 #自定义的函数，不是视图
 def count_visits(request, obj):       #修改网站访问量和访问ip等信息
@@ -53,7 +54,7 @@ def count_visits(request, obj):       #修改网站访问量和访问ip等信息
             print(f'user.location: {ip_exist.location}' )
             searcher.close()
             '''
-        database = IP2Location.IP2Location(os.path.join("/visitor_record/data", "IP2LOCATION-LITE-DB3.IPV6.BIN"))
+        database = IP2Location.IP2Location(BASE_DIR.join("/visitor_record/data", "IP2LOCATION-LITE-DB3.IPV6.BIN"))
         rec = database.get_all(client_ip)
         ip_exist.location = rec.country_long + '|' + rec.region + '|' + rec.city
         print(client_ip, ip_exist.location)
