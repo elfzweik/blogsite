@@ -54,7 +54,9 @@ def count_visits(request, obj):       #修改网站访问量和访问ip等信息
             print(f'user.location: {ip_exist.location}' )
             searcher.close()
             '''
-        database = IP2Location.IP2Location(BASE_DIR.join("/visitor_record/data", "IP2LOCATION-LITE-DB3.IPV6.BIN"))
+        print(BASE_DIR+("/visitor_record/data/IP2LOCATION-LITE-DB3.IPV6.BIN"))    
+        database = IP2Location.IP2Location(BASE_DIR + "/visitor_record/data/IP2LOCATION-LITE-DB3.IPV6.BIN")
+        
         rec = database.get_all(client_ip)
         ip_exist.location = rec.country_long + '|' + rec.region + '|' + rec.city
         print(client_ip, ip_exist.location)
