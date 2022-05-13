@@ -83,7 +83,7 @@
                         {% if i == '...' %}
                             <span class="page-numbers inactive">{{i}}</span>
                         {% else %}
-                            <a href="slugurl 'tags' %}?tag={{ tag }}?page={{i}}" class="page-numbers">{{i}}</a>
+                            <a href="{% slugurl 'tags' %}?tag={{ tag }}?page={{i}}" class="page-numbers">{{i}}</a>
                         {% endif %}
                     {% endif %}
                 {% endfor %}
