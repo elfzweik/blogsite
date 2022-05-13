@@ -139,7 +139,8 @@ class BlogTagIndexPage(Page):
 
         context = super().get_context(request)
         context['posts'] = blogpages
-        context['page_range']=page_range
+        context['page_range'] = page_range
+        context['tag'] = tag
         
         context['client_ip'] = data['client_ip']
         context['location'] = data['location']
