@@ -143,6 +143,11 @@ CACHES = {
 WAGTAILSEARCH_BACKENDS = {
     'default': {
         'BACKEND': 'wagtail.search.backends.database',
+        'SEARCH_CONFIG': 'english',
+    },
+    'chinese': {
+        'BACKEND': 'wagtail.search.backends.database',
+        'SEARCH_CONFIG': 'chinese',
     }
 }   
 

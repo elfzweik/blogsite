@@ -13,7 +13,7 @@ def search(request):
 
     # Search
     if search_query:
-        search_results = BlogDetailPage.objects.live().search(search_query)
+        search_results = BlogDetailPage.objects.live().search(search_query, operator='or')
         query = Query.get(search_query)
 
         # Record hit
