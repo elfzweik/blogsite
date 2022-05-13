@@ -10,12 +10,12 @@ from blog.models import BlogDetailPage
 def search(request):
     search_query = request.GET.get('query', None)
     page_num = request.GET.get('page', 1)
-
+    print(search_query)
     # Search
     if search_query:
         search_results = BlogDetailPage.objects.live().search(search_query, operator='or')
         query = Query.get(search_query)
-
+        print(search_results)
         # Record hit
         query.add_hit()
     else:
