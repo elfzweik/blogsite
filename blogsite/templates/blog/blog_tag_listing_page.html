@@ -83,12 +83,12 @@
                         {% if i == '...' %}
                             <span class="page-numbers inactive">{{i}}</span>
                         {% else %}
-                            <a href="?page={{i}}" class="page-numbers">{{i}}</a>
+                            <a href="slugurl 'tags' %}?tag={{ tag }}?page={{i}}" class="page-numbers">{{i}}</a>
                         {% endif %}
                     {% endif %}
                 {% endfor %}
                 {% if posts.has_next %}
-                    <a href="{%slugurl 'tags' %}?tag={{ tag }}?page={{posts.next_page_number}}" class="page-numbers next">&raquo;</a>
+                    <a href="{% slugurl 'tags' %}?tag={{ tag }}?page={{posts.next_page_number}}" class="page-numbers next">&raquo;</a>
                 {% else %}
                     <span class="page-numbers next inactive">&raquo;</span>
                 {% endif%}          
