@@ -72,7 +72,7 @@
             
             <nav class="pagination">
                 {% if posts.has_previous %}
-                    <a href="?page={{posts.previous_page_number}}" class="page-numbers prev">&laquo</a>
+                    <a href="{%slugurl 'tags' %}?tag={{ tag }}?page={{posts.previous_page_number}}" class="page-numbers prev">&laquo</a>
                 {% else %}
                     <span class="page-numbers prev inactive">&laquo</span>
                 {% endif %}
@@ -88,7 +88,7 @@
                     {% endif %}
                 {% endfor %}
                 {% if posts.has_next %}
-                    <a href="?page={{posts.next_page_number}}" class="page-numbers next">&raquo;</a>
+                    <a href="{%slugurl 'tags' %}?tag={{ tag }}?page={{posts.next_page_number}}" class="page-numbers next">&raquo;</a>
                 {% else %}
                     <span class="page-numbers next inactive">&raquo;</span>
                 {% endif%}          
