@@ -249,7 +249,7 @@ class BlogDetailPage(Page):
         index.SearchField('intro'),
         index.SearchField('content'),
         index.SearchField('create_date'),
-        
+        index.SearchField('tags'),
     ]
 
     content_panels = Page.content_panels + [
