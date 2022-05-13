@@ -8,18 +8,30 @@ from blog.models import BlogDetailPage
 
 
 def search(request):
-    search_query = request.GET.get('query', None)
+    search_query = request.GET.get('query', None).strip()
     page_num = request.GET.get('page', 1)
-    print(search_query)
-    # Search
-    if search_query:
+    
+    # Search 分词： 按空格 & | ~
+    condition = None
+    for word in search_query.split(' '):
+        if condition is None:
+            condition = Q(custom_title__icontains=word) | Q(intro__icontains=word) | Q(content__icontains=word)
+        else:
+            condition = condition | Q(custom_title__icontains=word) | Q(intro__icontains=word) | Q(content__icontains=word)
+
+    search_results = []
+    if condition is not None:
+        # 筛选：搜索
+        search_results = BlogDetailPage.objects.live().filter(condition)
+        '''if search_query:
         #search_results = BlogDetailPage.objects.live().search(search_query, operator='or')
         search_results = BlogDetailPage.objects.live().filter(
-                Q(custom_title_contains = search_query) |
-                Q(intro_contains = search_query) | 
-                Q(content_contains = search_query) |
-                Q(tags_contains = search_query) 
+                Q(custom_title_icontains = search_query) |
+                Q(intro_icontains = search_query) | 
+                Q(content_icontains = search_query) |
+                Q(tags_icontains = search_query) 
             )
+        '''
         query = Query.get(search_query)
         print(search_results)
         # Record hit
