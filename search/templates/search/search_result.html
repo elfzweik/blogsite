@@ -54,7 +54,7 @@
                                 <span class="cat-links">
                                     {% for tag in post.tags.all %}
                                         <span class="glyphicon glyphicon-tag"></span>
-                                        <a href="#">{{tag}}</a> 
+                                        <a href="{%slugurl 'tags' %}?tag={{ tag }}">{{tag}}</a> 
                                     {% endfor %}           				
                                 </span>			
                             </div>
@@ -82,8 +82,8 @@
         <div class="row" style="text-align: center;">
             
             <nav class="pagination">
-                {% if posts.has_previous %}
-                <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
+                {% if search_results.has_previous %}
+                <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}" class="page-numbers prev">&laquo</a>
                 {% else %}
                     <span class="page-numbers prev inactive">&laquo</span>
                 {% endif %}
@@ -94,12 +94,12 @@
                         {% if i == '...' %}
                             <span class="page-numbers inactive">{{i}}</span>
                         {% else %}
-                            <a href="?page={{i}}" class="page-numbers">{{i}}</a>
+                            <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{i}}" class="page-numbers">{{i}}</a>
                         {% endif %}
                     {% endif %}
                 {% endfor %}
-                {% if posts.has_next %}
-                <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
+                {% if search_results.has_next %}
+                <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}" class="page-numbers next">&raquo;</a>
                 {% else %}
                     <span class="page-numbers next inactive">&raquo;</span>
                 {% endif%}          

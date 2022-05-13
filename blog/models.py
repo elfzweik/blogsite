@@ -111,6 +111,7 @@ class BlogTagIndexPage(Page):
         blogpages = BlogDetailPage.objects.filter(tags__name=tag)
         paginator = Paginator(blogpages, 12)
         page_num = request.GET.get('page', 1)
+       
         try:
             blogpage = paginator.get_page(page_num)
         except PageNotAnInteger:
@@ -138,7 +139,7 @@ class BlogTagIndexPage(Page):
         data = count_visits(request, self)
 
         context = super().get_context(request)
-        context['posts'] = blogpages
+        context['posts'] = blogpage
         context['page_range'] = page_range
         context['tag'] = tag
         
