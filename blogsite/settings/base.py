@@ -35,7 +35,6 @@ INSTALLED_APPS = [
     'likes',
     'visitor_record',
 
-    'wagtail.contrib.postgres_search',
     'notifications',
     'ckeditor',
     "wagtail.contrib.table_block",
@@ -139,18 +138,13 @@ CACHES = {
         }
     }
 }
-WAGTAILSEARCH_BACKENDS = {
-    'default': {
-        'BACKEND': 'wagtail.contrib.postgres_search.backend',
-    },
-}
-'''
+
 WAGTAILSEARCH_BACKENDS = {
     'default': {
         'BACKEND': 'wagtail.search.backends.database',
     }
 }   
-'''
+
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 

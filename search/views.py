@@ -5,7 +5,7 @@ from wagtail.core.models import Page
 from wagtail.search.models import Query
 
 from blog.models import BlogDetailPage
-
+from visitor_record.utils import count_visits
 
 def search(request):
     search_query = request.GET.get('query', None).strip()
@@ -15,9 +15,9 @@ def search(request):
     condition = None
     for word in search_query.split(' '):
         if condition is None:
-            condition = Q(custom_title__icontains=word) | Q(intro__icontains=word) | Q(content__icontains=word)
+            condition = Q(custom_title__icontains=word) | Q(intro__icontains=word) | Q(content__icontains=word.encode('utf-8'))
         else:
-            condition = condition | Q(custom_title__icontains=word) | Q(intro__icontains=word) | Q(content__icontains=word)
+            condition = condition | Q(custom_title__icontains=word) | Q(intro__icontains=word) | Q(content__icontains=word.encode('utf-8'))
 
     search_results = []
     if condition is not None:
@@ -61,9 +61,19 @@ def search(request):
         page_range.append(paginator.num_pages)
     elif paginator.num_pages - page_range[-1] == 1:
         page_range.append(paginator.num_pages)
+    
+    data = count_visits(request, search_results[0])
 
-    return TemplateResponse(request, 'search/search_result.html', {
-        'search_query': search_query,
-        'search_results': search_results,
-        'page_range': page_range,
-    })
+    context = {}
+    context['client_ip'] = data['client_ip']
+    context['location'] = data['location']
+    context['total_hits'] = data['total_hits']
+    context['total_visitors'] =data['total_vistors']
+    context['cookie'] = data['cookie']
+
+    context['search_query'] = search_query
+    context['search_results'] = search_results
+    context['page_range'] = page_range
+    response = TemplateResponse(request, 'search/search_result.html', context)
+    response.set_cookie(context['cookie'], 'true', max_age=300)
+    return response
