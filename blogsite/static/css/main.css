@@ -2322,7 +2322,7 @@ header .logo a {
 	padding-right: 6rem;
 }
 
-#content-wrap .primary-content img {
+#content-wrap .primary-content.blog-content img {
 	max-width: 910px;
 	margin: 3rem 0 3rem -8%;
 	width: 116%;
@@ -2800,7 +2800,7 @@ footer ul li {
 }
 
 .blog-single .entry-meta .cat a {
-	margin-right: 5px;
+	margin: left 0.5rem; right: 0.5rem;
 }
 
 .blog-single .entry-meta .cat a:last-child {
@@ -2816,7 +2816,7 @@ footer ul li {
 }
 
 .blog-single .tags {
-	margin: 6rem 0 4.2rem;
+	margin: 0.5rem 0 0.5rem;
 }
 
 .blog-single .tags span {

@@ -1,5 +1,6 @@
 {% load static wagtailuserbar %}
 {% load notifications_tags %}
+{% load categories_tags %}
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -81,6 +82,20 @@
                         <ul class="main-navigation sf-menu ">
                             <li class="menu-li">
                                 <a href="/">博客</a>
+                            </li>
+
+                            <li class="menu-li has-children">
+                                <a href="/">专题 </a>
+                                <ul class="sub-menu">
+                                    {% get_categories as categories%}
+                                    {% if categories %}
+                                        {% for category in categories %}
+                                            <li>
+                                                <a href="{% url 'category_view' %}?category={{ category.name }}">{{ category.name }}</a>
+                                            </li>
+                                        {% endfor %}
+                                    {% endif %}
+                                </ul>
                             </li>
                                
                             <li class="menu-li">
