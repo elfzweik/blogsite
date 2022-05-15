@@ -2313,6 +2313,7 @@ header .logo a {
 }
 
 #content-wrap .content-media img {
+	margin: 0 auto;
 	vertical-align: bottom;
 }
 
