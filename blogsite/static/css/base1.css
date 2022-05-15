@@ -889,6 +889,7 @@ img.visits{
 	text-align: center;
 }
 
-.primary-content {
-	text-align: center;
+pre[class*=language-]>code {
+	border-left: 10px solid rgb(200 200 200 / 80%);
+    box-shadow: -1px 0 0 0 #ddd, 0 0 0 1px #dfdfdf;
 }
