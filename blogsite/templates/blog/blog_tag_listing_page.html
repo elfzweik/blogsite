@@ -7,7 +7,11 @@
     
         <div class="list_title">
             <p> <font size="3" color="grey">
-                Pages tagged "{{ tag }}", click <a href = "/">here</a> to return 
+                {% if posts %}
+                    {{ caption }}, click <a href = "/">here</a> to return
+                {% else %}
+                    No page found, click <a href = "/">here</a> to return
+                {% endif %}
             </font></p>
         </div>
     

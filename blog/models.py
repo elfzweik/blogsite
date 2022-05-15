@@ -145,7 +145,7 @@ class BlogTagIndexPage(Page):
         context = super().get_context(request)
         context['posts'] = blogpage
         context['page_range'] = page_range
-        context['tag'] = tag
+        context['caption'] = "Pages tagged with < " + tag + " >"
         
         context['client_ip'] = data['client_ip']
         context['location'] = data['location']
@@ -172,6 +172,25 @@ class CustomStreamField(StreamField):
             return value.raw_text
         else:
             return json.dumps(self.stream_block.get_prep_value(value), ensure_ascii=False, cls=DjangoJSONEncoder)
+
+@register_snippet
+class BlogCategory(models.Model):
+    name = models.CharField(max_length=255)
+    icon = models.ForeignKey(
+        'wagtailimages.Image', null=True, blank=True,
+        on_delete=models.SET_NULL, related_name='+'
+    )
+
+    panels = [
+        FieldPanel('name'),
+        ImageChooserPanel('icon'),
+    ]
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'blog categories'
 
 class BlogDetailPage(Page):
     template = "blog/blog_detail_page.html"
@@ -207,7 +226,7 @@ class BlogDetailPage(Page):
     intro = models.CharField('Introduction', max_length=500, help_text='文章简介')
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     
-    #categories = ParentalManyToManyField('blog.BlogCategory', blank=True)
+    categories = ParentalManyToManyField('blog.BlogCategory', blank=True)
 
     content = CustomStreamField(
         [
@@ -277,7 +296,7 @@ class BlogDetailPage(Page):
             #FieldPanel('create_date'),
             #FieldPanel('update_date'),
             FieldPanel('tags'),
-            #FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
+            FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
         ], heading="Blog information"),
         
         # FieldPanel('body'),

@@ -37,17 +37,33 @@
                             <br>
                             {% for tag in self.tags.all %}
                                 <span class="glyphicon glyphicon-tag"></span>
-                                <li class="cat"><a href="{%slugurl 'tags' %}?tag={{ tag }}">{{tag}}</a></li>
+                                <li class="tags"><a href="{%slugurl 'tags' %}?tag={{ tag }}">{{tag}}</a></li>
                             {% endfor %}
+                            <br>
+                            {% with categories=page.categories.all %}
+                                {% if categories %}
+                                    <h3 style="display: inline; margin-right: rem">专题： </h3>
+                                    
+                                    {% for category in categories %}
+                                        <li class="cat">
+                                            {% image category.icon max-32x32 %}
+                                            {{ category.name }}
+                                        </li>
+                                    {% endfor %}
+                                    
+                                {% endif %}
+                            {% endwith %}
                         </ul>				                  		
 						<p class="lead">
                             {{self.intro|richtext}}
                         </p>
-                        <p class="">
-                            {% for block in self.content %}
-                                {% include_block block %}
-                            {% endfor %}
-                        </p>
+                        <div class="blog-content">
+                            <p>
+                                {% for block in self.content %}
+                                    {% include_block block %}
+                                {% endfor %}
+                            </p>
+                        </div>
                     </div>	
                     <div class="pagenav group">
 		  			    <div class="prev-nav">
