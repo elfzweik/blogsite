@@ -885,3 +885,6 @@ img.visits{
 	font-size: 12px;
 }
 
+.post-thumb {
+	align-items: center;
+}
