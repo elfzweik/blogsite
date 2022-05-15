@@ -1,9 +1,12 @@
+import json
+
 from django.shortcuts import render
 from audioop import reverse
 from django import forms
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.core.serializers.json import DjangoJSONEncoder
 from ckeditor.fields import RichTextField
 
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
@@ -24,6 +27,7 @@ from wagtailmarkdown.blocks import MarkdownBlock
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.contrib.table_block.blocks import TableBlock
 from wagtailcodeblock.blocks import CodeBlock
+
 from streams.blocks import CardBlock
 from visitor_record.utils import count_visits
 
@@ -158,6 +162,17 @@ class BlogTagIndexPage(Page):
         response.set_cookie(context['cookie'], 'true', max_age=300)
         return response
 
+class CustomStreamField(StreamField):
+    def get_prep_value(self, value):
+        if isinstance(value, blocks.StreamValue) and not(value) and value.raw_text is not None:
+            # An empty StreamValue with a nonempty raw_text attribute should have that
+            # raw_text attribute written back to the db. (This is probably only useful
+            # for reverse migrations that convert StreamField data back into plain text
+            # fields.)
+            return value.raw_text
+        else:
+            return json.dumps(self.stream_block.get_prep_value(value), ensure_ascii=False, cls=DjangoJSONEncoder)
+
 class BlogDetailPage(Page):
     template = "blog/blog_detail_page.html"
     
@@ -194,7 +209,7 @@ class BlogDetailPage(Page):
     
     #categories = ParentalManyToManyField('blog.BlogCategory', blank=True)
 
-    content = StreamField(
+    content = CustomStreamField(
         [
             ('heading', blocks.CharBlock(form_classname="full title")),
             ('paragraph', blocks.RichTextBlock()),

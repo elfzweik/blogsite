@@ -15,9 +15,9 @@ def search(request):
     condition = None
     for word in search_query.split(' '):
         if condition is None:
-            condition = Q(custom_title__icontains=word) | Q(intro__icontains=word) | Q(content__icontains=word.encode('utf-8'))
+            condition = Q(custom_title__icontains=word) | Q(intro__icontains=word) | Q(content__icontains=word)
         else:
-            condition = condition | Q(custom_title__icontains=word) | Q(intro__icontains=word) | Q(content__icontains=word.encode('utf-8'))
+            condition = condition | Q(custom_title__icontains=word) | Q(intro__icontains=word) | Q(content__icontains=word)
 
     search_results = []
     if condition is not None:
@@ -62,7 +62,7 @@ def search(request):
     elif paginator.num_pages - page_range[-1] == 1:
         page_range.append(paginator.num_pages)
     
-    data = count_visits(request, search_results[0])
+    data = count_visits(request, BlogDetailPage.objects.all()[0])
 
     context = {}
     context['client_ip'] = data['client_ip']
