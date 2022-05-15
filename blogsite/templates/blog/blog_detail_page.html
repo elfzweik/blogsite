@@ -43,7 +43,7 @@
 						<p class="lead">
                             {{self.intro|richtext}}
                         </p>
-                        <p>
+                        <p class="content">
                             {% for block in self.content %}
                                 {% include_block block %}
                             {% endfor %}
