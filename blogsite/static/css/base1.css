@@ -893,3 +893,7 @@ pre[class*=language-]>code {
 	border-left: 10px solid rgb(200 200 200 / 80%) !important;
     box-shadow: -1px 0 0 0 #ddd, 0 0 0 1px #dfdfdf !important;
 }
+
+.primary-content img{
+	width: 100%;
+}
