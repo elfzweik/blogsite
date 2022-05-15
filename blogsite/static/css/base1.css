@@ -889,10 +889,6 @@ img.visits{
 	text-align: center;
 }
 
-p.content {
+.primary-content {
 	text-align: center;
-}
-
-p.content img{
-	margin: 0 auto;
 }
