@@ -43,7 +43,7 @@
 						<p class="lead">
                             {{self.intro|richtext}}
                         </p>
-                        <p class="content">
+                        <p class="">
                             {% for block in self.content %}
                                 {% include_block block %}
                             {% endfor %}
@@ -82,77 +82,16 @@
         <div class="comments-wrap">
             <div id="comments" class="row">
                 <div class="col-full">    
-                    <!-- respond -->
-                    <div class="respond">
-
-                        <h3>Leave a Comment</h3>
-                        <div class="like" onclick="likeChange(this, '{% get_content_type self %}', {{ self.pk }})">
-                            <span class="glyphicon glyphicon-heart {% get_like_status self %}"></span>
-                            <span class="liked_num">  {% get_like_count self %}</span>
-                            {% get_like_users self as like_users %}
-                            {% for like_user in like_users %}
-                                <span class="like_users">{{ like_user.user.get_fullname_or_username}}、</span>
-                            {% endfor %}
-                        </div>
-                        {% if user.is_authenticated %}
-                            <form id="comment_form-id" action="{% url 'update_comment' %}" method="POST">
-                                <fieldset>
-                                    <label>{{ user.get_fullname_or_username }}，尽情吐槽吧~</label>
-                                    <div id="reply-content-container-id" style="display:none;">
-                                        <p id="reply-title-id">回复：</p>
-                                        <div id="reply-content-id"></div>
-                                    </div>
-                                    <span id="comment_error" class="text-danger pull-left"></span>
-                                    {% csrf_token %}
-                                    <input type="hidden" name="content_type" value="blogdetailpage" id="id_content_type">
-                                    
-                                    <input type="hidden" name="object_id" value="{{self.pk}}" id="id_object_id">
-                                    
-                                    <input type="hidden" name="reply_comment_id" value="0" id="reply_comment_id">
-                                
-                                    <div class="message form-field"></div>
-                                        <textarea style= "margin-bottom : 0px" name="text" id="id_text" class="full-width" required onfocus="javascript: $('#comment_error').text('');"></textarea>
-                                    </div>
-                                    
-                                    <input type="submit" value="Submit" class="submit button-primary">
-                                </fieldset>
-                            </form>
-                            <!--<form name="contactForm" id="contactForm-id" method="post" action="{% url 'update_comment' %}" onsubmit="javascript:submitComment()" >
-                                <fieldset>
-                                    <div class="form-field">
-                                            <label id="cName" class="full-width">{{ user.get_fullname_or_username }}，尽情吐槽吧~</label>
-                                    </div>
-                                    <div id="reply-content-container-id" style="display:none;">
-                                        <p id="reply-title-id">回复：</p>
-                                        <div id="reply-content-id"></div>
-                                    </div>
-                                    {% csrf_token %}
-                                    
-                                    <input type="hidden" name="content_type" value="blogdetailpage" id="id_content_type">
-                                    
-                                    <input type="hidden" name="object_id" value="{{self.pk}}" id="id_object_id">
-                                    
-                                    <input type="hidden" name="reply_comment_id" value="0" id="reply_comment_id">
-                                
-                                    <div class="message form-field"></div>
-                                        <textarea style= "margin-bottom : 0px" name="text" class="full-width" required id="id_text" οnfοcus="$("#comment_error").text('');“></textarea>
-                                    </div>
- 
-                                    <span id="comment_error" class="text-danger pull-left"></span>
-                                    <button type="submit" class="submit button-primary" >Submit</button>
-                                </fieldset>
-                            </form> <!-- Form End -->
-                        {% else %}
-                            <p>来签个到再发言吧~</p>
-                            <br> 
-                            <a class="button button-primary small-width" href="{% url 'login' %}?from={{ request.get_full_path }}">登录</a>
-                           
-                            <a class="button button-primary small-width" href="{% url 'register' %}?from={{ request.get_full_path }}">注册</a>
-                        {% endif %}
-                    </div> <!-- Respond End -->
-    
+                    <h3><a href="#id-respond"> Leave a Comment</a></h3>
+                    <div class="like" onclick="likeChange(this, '{% get_content_type self %}', {{ self.pk }})">
+                        <span class="glyphicon glyphicon-heart {% get_like_status self %}"></span>
+                        <span class="liked_num">  {% get_like_count self %}</span>
+                        {% get_like_users self as like_users %}
+                        {% for like_user in like_users %}
+                            <span class="like_users">{{ like_user.user.get_fullname_or_username}}、</span>
+                        {% endfor %}
+                    </div>
                     <hr>
-        
                     <h3>{% get_comment_count self %} Comments</h3>
         
                     <!-- commentlist -->
@@ -226,6 +165,64 @@
                             
                         {% endfor %}
                     </ol> <!-- Commentlist End -->
+                    <!-- respond -->
+                    <div class="respond" id="id-respond">
+                        {% if user.is_authenticated %}
+                            <form id="comment_form-id" action="{% url 'update_comment' %}" method="POST">
+                                <fieldset>
+                                    <label>{{ user.get_fullname_or_username }}，尽情吐槽吧~</label>
+                                    <div id="reply-content-container-id" style="display:none;">
+                                        <p id="reply-title-id">回复：</p>
+                                        <div id="reply-content-id"></div>
+                                    </div>
+                                    <span id="comment_error" class="text-danger pull-left"></span>
+                                    {% csrf_token %}
+                                    <input type="hidden" name="content_type" value="blogdetailpage" id="id_content_type">
+                                    
+                                    <input type="hidden" name="object_id" value="{{self.pk}}" id="id_object_id">
+                                    
+                                    <input type="hidden" name="reply_comment_id" value="0" id="reply_comment_id">
+                                
+                                    <div class="message form-field">
+                                        <textarea style= "margin-bottom : 0px" name="text" id="id_text" class="full-width" required onfocus="javascript: $('#comment_error').text('');"></textarea>
+                                    </div>
+                                    
+                                    <input type="submit" value="Submit" class="submit button-primary">
+                                </fieldset>
+                            </form>
+                            <!--<form name="contactForm" id="contactForm-id" method="post" action="{% url 'update_comment' %}" onsubmit="javascript:submitComment()" >
+                                <fieldset>
+                                    <div class="form-field">
+                                            <label id="cName" class="full-width">{{ user.get_fullname_or_username }}，尽情吐槽吧~</label>
+                                    </div>
+                                    <div id="reply-content-container-id" style="display:none;">
+                                        <p id="reply-title-id">回复：</p>
+                                        <div id="reply-content-id"></div>
+                                    </div>
+                                    {% csrf_token %}
+                                    
+                                    <input type="hidden" name="content_type" value="blogdetailpage" id="id_content_type">
+                                    
+                                    <input type="hidden" name="object_id" value="{{self.pk}}" id="id_object_id">
+                                    
+                                    <input type="hidden" name="reply_comment_id" value="0" id="reply_comment_id">
+                                
+                                    <div class="message form-field"></div>
+                                        <textarea style= "margin-bottom : 0px" name="text" class="full-width" required id="id_text" οnfοcus="$("#comment_error").text('');“></textarea>
+                                    </div>
+ 
+                                    <span id="comment_error" class="text-danger pull-left"></span>
+                                    <button type="submit" class="submit button-primary" >Submit</button>
+                                </fieldset>
+                            </form> <!-- Form End -->
+                        {% else %}
+                            <p>来签个到再发言吧~</p>
+                            <br> 
+                            <a class="button button-primary small-width" href="{% url 'login' %}?from={{ request.get_full_path }}">登录</a>
+                           
+                            <a class="button button-primary small-width" href="{% url 'register' %}?from={{ request.get_full_path }}">注册</a>
+                        {% endif %}
+                    </div> <!-- Respond End -->
                 </div> <!-- end col-full -->
             </div> <!-- end row comments -->
         </div> <!-- end comments-wrap -->
