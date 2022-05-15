@@ -2324,8 +2324,8 @@ header .logo a {
 
 #content-wrap .primary-content img {
 	max-width: 910px;
-	margin: 3rem 0 3rem -10%;
-	width: 120%;
+	margin: 3rem 0 3rem -8%;
+	width: 116%;
 }
 
 #content-wrap .primary-content img.pull-right {
@@ -2358,8 +2358,8 @@ header .logo a {
 	}
 	#content-wrap .primary-content img {
 		max-width: 844px;
-		margin: 3rem 0 3rem -8%;
-		width: 116%;
+		margin: 3rem 0 3rem -6.5%;
+		width: 113%;
 	}
 
 }
