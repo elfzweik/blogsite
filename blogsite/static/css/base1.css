@@ -901,5 +901,5 @@ pre[class*=language-]>code {
 	max-width: 32px;
 	max-height: 32px;
 	margin-top: 0;
-	margin-bottom: 0;
+	margin-bottom: 0.8rem;
 }
