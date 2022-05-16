@@ -898,8 +898,8 @@ pre[class*=language-]>code {
 }
 
 #content-wrap .primary-content  li.cat > img {
-	max-width: 24px;
-	max-height: 24px;
+	max-width: 32px;
+	max-height: 32px;
 	margin-top: 0;
 	margin-bottom: 0;
 }
