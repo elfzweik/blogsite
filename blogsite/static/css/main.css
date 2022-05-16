@@ -2322,7 +2322,7 @@ header .logo a {
 	padding-right: 6rem;
 }
 
-#content-wrap .primary-content.blog-content img {
+#content-wrap .primary-content .blog-content img {
 	max-width: 910px;
 	margin: 3rem 0 3rem -8%;
 	width: 116%;
@@ -2357,7 +2357,7 @@ header .logo a {
 		padding-left: 5rem;
 		padding-right: 5rem;
 	}
-	#content-wrap .primary-content img {
+	#content-wrap .primary-content .blog-content img {
 		max-width: 844px;
 		margin: 3rem 0 3rem -6.5%;
 		width: 113%;
@@ -2373,7 +2373,7 @@ header .logo a {
 		padding-left: 4rem;
 		padding-right: 4rem;
 	}
-	#content-wrap .primary-content img {
+	#content-wrap .primary-content .blog-content img {
 		max-width: 100%;
 		margin: 3rem 0 3rem 0;
 		width: 100%;
