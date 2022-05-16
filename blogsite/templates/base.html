@@ -275,10 +275,19 @@
         }
 
         $(document).ready(function(){
-            console.log($("#hits").html());
+            var urlString = document.location.toString();
+            if (urlString.search('about') != -1) {
+                $('.main-navigation').children().eq(2).addClass('current');
+            }
+            else if (urlString.search('category') != -1) {
+                $('.main-navigation').children().eq(1).addClass('current');
+            }
+            else {
+                $('.main-navigation').children().eq(0).addClass('current');
+            }
+
             var hits_string = numberFormat($("#hits").html());
             var visitor_string = numberFormat($("#visitor").html());
-            console.log(hits_string);
             var html1='';
             var html2='';
             for (var i = 1; i < 7; i++){
@@ -287,7 +296,6 @@
                 html1=html1+'<img class="visits" src="'+hitsImgName+'" alt="" />';
                 html2=html2+'<img class="visits" src="'+visImgName+'" alt=""/>';
             }
-            console.log(html1, html2);
             $('#hits').html('');
             $('#visitor').html('');
             $('#hits').append(html1);

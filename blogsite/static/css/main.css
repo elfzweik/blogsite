@@ -319,6 +319,7 @@ ul ol,
 ol ol,
 ol ul {
 	margin: .6rem 0 .6rem 1.7rem;
+	padding-inline-start: 0;
 }
 
 ul.disc li {
