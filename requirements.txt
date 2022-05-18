@@ -6,3 +6,4 @@ wagtail-markdown==0.8.0
 wagtailcodeblock==1.25.0.2
 psycopg2-binary==2.9.3
 djang-redis==5.2.0
+IP2Location==8.7.4
