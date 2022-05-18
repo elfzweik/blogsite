@@ -1,7 +1,6 @@
 import struct, sys, os, time
 from xml.etree.ElementInclude import include
 import IP2Location
-from .ip2Region import Ip2Region
 from .models import *
 from django.utils import timezone
 from django.contrib.contenttypes.models import ContentType
