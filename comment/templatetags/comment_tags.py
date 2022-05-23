@@ -25,5 +25,5 @@ def get_comment_form(obj):
 def get_comment_list(obj):
     content_type = ContentType.objects.get_for_model(obj)
     comments = MyComment.objects.filter(content_type=content_type, object_id=obj.pk, parent=None)
-    return comments.order_by('-comment_time')
+    return comments.order_by('-update_time')
 
