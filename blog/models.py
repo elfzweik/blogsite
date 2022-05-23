@@ -146,7 +146,8 @@ class BlogTagIndexPage(Page):
         context['posts'] = blogpage
         context['page_range'] = page_range
         context['caption'] = "Pages tagged with < " + tag + " >"
-        
+        context['tag'] = tag
+
         context['client_ip'] = data['client_ip']
         context['location'] = data['location']
         context['total_hits'] = data['total_hits']
