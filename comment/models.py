@@ -13,6 +13,7 @@ class MyComment(models.Model):
     text = RichTextField()
     comment_time = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, related_name="comments", on_delete=models.CASCADE)
+    update_time = models.DateTimeField(auto_now=True)
 
     root = models.ForeignKey('self', related_name='root_comment', null=True, on_delete=models.CASCADE)
     parent = models.ForeignKey('self', related_name='parent_comment', null=True, on_delete=models.CASCADE)
@@ -28,4 +29,4 @@ class MyComment(models.Model):
         return self.user
 
     class Meta:
-        ordering = ['comment_time']
+        ordering = ['-update_time']

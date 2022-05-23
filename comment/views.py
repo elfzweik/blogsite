@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.shortcuts import render, redirect
 from django.contrib.contenttypes.models import ContentType
 from django.urls import reverse
@@ -22,7 +23,11 @@ def update_comment(request):
             comment.root = parent.root if not parent.root is None else parent
             comment.parent = parent
             comment.reply_to = parent.user
+            comment.root.update_time = datetime.now()
+            parent.update_time = datetime.now()
         comment.save()
+        comment.root.save()
+        parent.save()
 
         # 返回数据
         data['status'] = 'SUCCESS'
