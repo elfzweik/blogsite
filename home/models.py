@@ -1,10 +1,12 @@
 from django.db import models
+from django.shortcuts import render
 
 from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel
 
+from visitor_record.utils import count_visits
 
 class HomePage(Page):
     template = "home/home_page.html"
@@ -33,6 +35,25 @@ class HomePage(Page):
         ImageChooserPanel("banner_image"),
         PageChooserPanel("banner_cta")
     ]
+
+    def get_context (self, request, *args, **kwargs):
+        data = count_visits(request, self)
+        context = {}
+        context['requestMETA'] = data['requestMETA']
+        context['client_ip'] = data['client_ip']
+        context['location'] = data['location']
+        context['total_hits'] = data['total_hits']
+        context['total_visitors'] =data['total_vistors']
+        context['cookie'] = data['cookie']
+        return context
+
+    def serve(self, request):
+        context = self.get_context(request)
+        template = self.get_template(request)
+        
+        response = render(request, template, context)
+        response.set_cookie(context['cookie'], 'true', max_age=300)
+        return response
 
     class Meta:
         verbose_name = "Home Page"
