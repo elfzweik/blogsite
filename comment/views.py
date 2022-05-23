@@ -25,9 +25,10 @@ def update_comment(request):
             comment.reply_to = parent.user
             comment.root.update_time = datetime.now()
             parent.update_time = datetime.now()
+            comment.root.save()
+            parent.save()
         comment.save()
-        comment.root.save()
-        parent.save()
+        
 
         # 返回数据
         data['status'] = 'SUCCESS'
