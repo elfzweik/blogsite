@@ -12,7 +12,7 @@ from visitor_record.utils import count_visits
 def category_view(request):
     category = request.GET.get('category','')
 
-    blogpages = BlogDetailPage.objects.live().filter(categories__name=category)
+    blogpages = BlogDetailPage.objects.live().filter(categories__name=category).order_by('-first_published_at')
 
     paginator = Paginator(blogpages, 12)
     page_num = request.GET.get('page', 1)

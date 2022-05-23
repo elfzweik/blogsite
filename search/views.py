@@ -22,7 +22,7 @@ def search(request):
     search_results = []
     if condition is not None:
         # 筛选：搜索
-        search_results = BlogDetailPage.objects.live().filter(condition)
+        search_results = BlogDetailPage.objects.live().filter(condition).order_by('-first_published_at')
         '''if search_query:
         #search_results = BlogDetailPage.objects.live().search(search_query, operator='or')
         search_results = BlogDetailPage.objects.live().filter(
