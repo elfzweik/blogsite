@@ -38,7 +38,7 @@ class HomePage(Page):
 
     def get_context (self, request, *args, **kwargs):
         data = count_visits(request, self)
-        context = {}
+        context=super().get_context(request, *args, **kwargs)
         context['requestMETA'] = data['requestMETA']
         context['client_ip'] = data['client_ip']
         context['location'] = data['location']
