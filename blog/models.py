@@ -112,7 +112,7 @@ class BlogTagIndexPage(Page):
 
         # Filter by tag
         tag = request.GET.get('tag')
-        blogpages = BlogDetailPage.objects.filter(tags__name=tag)
+        blogpages = BlogDetailPage.objects.filter(tags__name=tag).order_by('-first_published_at')
         paginator = Paginator(blogpages, 12)
         page_num = request.GET.get('page', 1)
        
