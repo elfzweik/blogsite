@@ -98,7 +98,7 @@
         <div class="comments-wrap">
             <div id="comments" class="row">
                 <div class="col-full">    
-                    <h3><a href="#id-respond"> Leave a Comment</a></h3>
+                    <h3><a href="#id_text"> Leave a Comment</a></h3>
                     <div class="like" onclick="likeChange(this, '{% get_content_type self %}', {{ self.pk }})">
                         <span class="glyphicon glyphicon-heart {% get_like_status self %}"></span>
                         <span class="liked_num">  {% get_like_count self %}</span>
