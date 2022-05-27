@@ -905,6 +905,6 @@ pre[class*=language-]>code {
 }
 
 #content-wrap > div.row > div > article > div.primary-content > div > section.block-embed > div > iframe {
-	width: 60vw;
-	height: 40vh;
+	width: 64rem;
+	height: 48rem;
 }
