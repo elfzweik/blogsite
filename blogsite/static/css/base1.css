@@ -903,3 +903,8 @@ pre[class*=language-]>code {
 	margin-top: 0;
 	margin-bottom: 0.8rem;
 }
+
+#content-wrap > div.row > div > article > div.primary-content > div > section.block-embed > div > iframe {
+	width: 60vw;
+	height: 40vh;
+}
