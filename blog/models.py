@@ -237,7 +237,7 @@ class BlogDetailPage(Page):
             ('blockquote', blocks.BlockQuoteBlock(label='Block Quote')),
             ('documentchooser', DocumentChooserBlock(label='Document Chooser')),
             ('url', blocks.URLBlock(label='URL')),
-            ('embed', EmbedBlock(label='Embed')),
+            ('embed', EmbedBlock(label='Embed', width=800)),
             #('snippetchooser', SnippetChooserBlock(label='Snippet Chooser')),
             ('rawhtml', blocks.RawHTMLBlock(label='Raw HTML')),
             ('table', TableBlock(label='Table')),
