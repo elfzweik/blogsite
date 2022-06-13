@@ -75,7 +75,7 @@
             <span class="page-numbers current">{{i}}</span> {% else %} {% if i == '...' %}
             <span class="page-numbers inactive">{{i}}</span> {% else %}
             <a href="{% url 'category_view' %}?category={{ category }}&amp;page={{i}}" class="page-numbers">{{i}}</a> {% endif %} {% endif %} {% endfor %} {% if posts.has_next %}
-            <a href="{{% url 'category_view' %}?category={{ category }}&amp;page={{posts.next_page_number}}" class="page-numbers next">&raquo;</a> {% else %}
+            <a href="{% url 'category_view' %}?category={{ category }}&amp;page={{posts.next_page_number}}" class="page-numbers next">&raquo;</a> {% else %}
             <span class="page-numbers next inactive">&raquo;</span> {% endif%}
 
         </nav>
