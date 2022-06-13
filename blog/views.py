@@ -47,12 +47,13 @@ def category_view(request):
     context['posts'] = blogpage
     context['page_range'] = page_range
     context['caption'] = "Pages in Category \"" + category +"\""
+    context['category'] = category
 
     context['client_ip'] = data['client_ip']
     context['location'] = data['location']
     context['total_hits'] = data['total_hits']
     context['total_visitors'] =data['total_vistors']
     context['cookie'] = data['cookie']
-    response = render(request, 'blog/blog_tag_listing_page.html', context)
+    response = render(request, 'blog/blog_cat_listing_page.html', context)
     response.set_cookie(context['cookie'], 'true', max_age=300)
     return response
