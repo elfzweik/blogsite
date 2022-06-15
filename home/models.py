@@ -28,12 +28,15 @@ class HomePage(Page):
         on_delete = models.SET_NULL,
         related_name = "+",
     )
+
+    content = RichTextField(blank=True)
     
     content_panels = Page.content_panels + [
         FieldPanel("banner_title"),
         FieldPanel("banner_subtitle"),
         ImageChooserPanel("banner_image"),
-        PageChooserPanel("banner_cta")
+        PageChooserPanel("banner_cta"),
+        FieldPanel("content")
     ]
 
     def get_context (self, request, *args, **kwargs):
