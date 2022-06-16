@@ -46,7 +46,7 @@
                             <h1>{{ block.value }}</h1>
                             {% elif block.block_type == 'embeded' %}
                             <section style="width:800px;">{% embed value.embeded max_width="640" %}</section>
-                            {% elif block.block_type == 'markdown' %}
+                            {% elif block.block_type == 'wagtailmarkdown' %}
                             <section> {{ self.body|markdown }} </section>
                             {% else %}
                             <section class="block-{{ block.block_type }}">
