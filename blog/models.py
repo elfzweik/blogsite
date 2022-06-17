@@ -243,7 +243,7 @@ class BlogDetailPage(Page):
             ('rawhtml', blocks.RawHTMLBlock(label='Raw HTML')),
             ('table', TableBlock(label='Table')),
             ('markdown', MarkdownBlock(label='Markdown')),
-            ('equation', MathBlock(label='Equiation')),
+            ('equation', MathBlock(label='Equation')),
             ('code', CodeBlock(label='Code')),
             ('imagedeck', CardBlock(label='Imagedeck')), 
             
