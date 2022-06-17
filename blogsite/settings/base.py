@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'likes',
     'visitor_record',
 
+    'wagtailmath',
     'notifications',
     'ckeditor',
     "wagtail.contrib.table_block",
