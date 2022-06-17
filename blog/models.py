@@ -27,6 +27,7 @@ from wagtailmarkdown.blocks import MarkdownBlock
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.contrib.table_block.blocks import TableBlock
 from wagtailcodeblock.blocks import CodeBlock
+from wagtailmath.blocks import MathBlock
 
 from streams.blocks import CardBlock
 from visitor_record.utils import count_visits
@@ -242,6 +243,7 @@ class BlogDetailPage(Page):
             ('rawhtml', blocks.RawHTMLBlock(label='Raw HTML')),
             ('table', TableBlock(label='Table')),
             ('markdown', MarkdownBlock(label='Markdown')),
+            ('equation', MathBlock(label='Equiation')),
             ('code', CodeBlock(label='Code')),
             ('imagedeck', CardBlock(label='Imagedeck')), 
             

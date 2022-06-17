@@ -8,3 +8,4 @@ psycopg2-binary==2.9.3
 IP2Location==8.7.4
 notifications==0.3.2
 django-redis==5.2.0
+wagtailmath==1.2.0

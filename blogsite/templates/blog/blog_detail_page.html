@@ -1,6 +1,7 @@
-{% extends "base.html" %} {% load static wagtailuserbar %} {% load wagtailimages_tags wagtailcore_tags wagtailembeds_tags%} {% load comment_tags %} {% load like_tags %} {% load wagtailmarkdown %} {% block header %}
+{% extends "base.html" %} {% load static wagtailuserbar %} {% load wagtailmath %} {% load wagtailimages_tags wagtailcore_tags wagtailembeds_tags%} {% load comment_tags %} {% load like_tags %} {% load wagtailmarkdown %} {% block header %}
 <script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
 <script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+<script src="{% mathjax %}"></script>
 
 {% endblock %} {% block content %}
 
