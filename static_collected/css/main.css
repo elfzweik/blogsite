@@ -166,7 +166,7 @@ h6, .h06 {
 p img {
 	margin: 0;
 }
-p.lead.p {
+p.lead {
 	font-family: 'roboto-light', sans-serif, KaiTi, "KaiTi_GB2312", 楷体, STKaiti ;
 	font-size: 2.4rem;
 	line-height: 1.8;
@@ -181,7 +181,7 @@ p.lead.p {
 	overflow:hidden;
 }
 @media only screen and (max-width:768px) {
-	p.lead.p {
+	p.lead {
 		font-size: 2.1rem;
 	}
 }
@@ -319,6 +319,7 @@ ul ol,
 ol ol,
 ol ul {
 	margin: .6rem 0 .6rem 1.7rem;
+	padding-inline-start: 0;
 }
 
 ul.disc li {
@@ -586,7 +587,7 @@ select {
 	padding: 1.5rem 2.5rem;
 	border: 0;
 	outline: none;
-	vertical-align: middle;
+
 	color: rgba(0, 0, 0, 0.7);
 	font-family: "roboto-regular", sans-serif, KaiTi, "KaiTi_GB2312", 楷体, STKaiti ;
 	font-size: 1.5rem;
@@ -732,13 +733,13 @@ input[type="reset"],
 input[type="button"] {
 	display: inline-block;
 	font-family: "montserrat-regular", sans-serif, HeiTi, "Microsoft JhengHei", SimHei, STHeiti;
-	font-size: 1.4rem;
+	font-size: 1.5rem;
 	text-transform: uppercase;
 	letter-spacing: .3rem;
 	height: 5.4rem;
 	line-height: 5.4rem;
 	padding: 0 3rem;
-	margin: 0 .3rem 1.2rem 0;
+	margin: 0 .6rem 1.1rem 0;
 	background: #d8d8d8;
 	color: #151515;
 	text-decoration: none;
@@ -1633,8 +1634,8 @@ header .logo a {
 	padding: 0;
 	outline: 0;
 	border: none;
-	width: 50px;
-	height: 50px;
+	width: 60px;
+	height: 60px;
 	background: url("../images/logo.png") no-repeat center;
 	background-size: 60px 60px;
 	font: 0/0 a;
@@ -1689,7 +1690,7 @@ header .logo a {
 .triggers {
 	position: absolute;
 	right: 35px;
-	top: 18px;
+	top: 24px;
 }
 
 .triggers .search-trigger {
@@ -1746,11 +1747,11 @@ header .logo a {
 }
 
 .main-navigation li {
+	padding-top: 0;
 	position: relative;
-	display: inline-block;
 	float: left;
 	margin-right: 22px;
-	padding: 0;
+	/* padding: 0; */
 }
 
 .main-navigation li:last-child {
@@ -1759,7 +1760,7 @@ header .logo a {
 
 .main-navigation li a {
 	display: block;
-	padding-bottom: 9px;
+	padding-bottom: 0;
 	color: #898989;
 	border: none;
 }
@@ -2065,6 +2066,16 @@ header .logo a {
 
 }
 
+@media only screen and (max-width:300px) {
+	.triggers .menu-toggle {
+		
+		right: -25px;
+	}
+	.triggers .search-trigger {
+		right: 5px;
+	}
+}
+
 /* make sure the menu is visible on larger screens
  * ------------------------------------------------------------------- */
 @media only screen and (min-width:769px) {
@@ -2074,6 +2085,19 @@ header .logo a {
 
 }
 
+@media only screen and (max-width:300px) {
+	
+	.main-navigation {
+		display: none;
+		background: #FFFFFF;
+		padding: 132px 15px 54px 45px;
+		margin: 0;
+		width: 100%;
+		height: auto;
+		clear: both;
+		box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15);
+	}
+}
 /* ------------------------------------------------------------------- 
  * search wrap - (_layout.css) 
  * ------------------------------------------------------------------- */
@@ -2290,6 +2314,7 @@ header .logo a {
 }
 
 #content-wrap .content-media img {
+	margin: 0 auto;
 	vertical-align: bottom;
 }
 
@@ -2298,15 +2323,17 @@ header .logo a {
 	padding-right: 6rem;
 }
 
-#content-wrap .primary-content img {
+#content-wrap .primary-content .blog-content img {
 	max-width: 910px;
-	margin: 3rem 0 3rem -6rem;
+	margin: 3rem 0 3rem -8%;
+	width: 116%;
 }
 
 #content-wrap .primary-content img.pull-right {
 	margin: 0.9rem 0 0 2.4rem;
 	max-width: 100%;
 }
+
 
 #content-wrap .primary-content img.pull-left {
 	margin: 0.9rem 2.4rem 0 0;
@@ -2331,9 +2358,10 @@ header .logo a {
 		padding-left: 5rem;
 		padding-right: 5rem;
 	}
-	#content-wrap .primary-content img {
+	#content-wrap .primary-content .blog-content img {
 		max-width: 844px;
-		margin: 3rem 0 3rem -5rem;
+		margin: 3rem 0 3rem -6.5%;
+		width: 113%;
 	}
 
 }
@@ -2346,9 +2374,10 @@ header .logo a {
 		padding-left: 4rem;
 		padding-right: 4rem;
 	}
-	#content-wrap .primary-content img {
+	#content-wrap .primary-content .blog-content img {
 		max-width: 100%;
 		margin: 3rem 0 3rem 0;
+		width: 100%;
 	}
 
 }
@@ -2481,23 +2510,35 @@ header .logo a {
 
 	.bricks-wrapper .grid-sizer,
 	.bricks-wrapper .brick {
-		width: 100%;
+		width: 50%;
 		padding: 0 10px;
 		clear: both;
 	}
+
+	.bricks-wrapper .featured-grid {
+		width: 100%;
+	}
 }
-@media only screen and (max-width:400px) {
+@media only screen and (max-width: 420px) {
 	.bricks-wrapper .brick {
-		width: 100% !important;
-		float: none !important;
-		clear: both !important;
+		width: 50% ;
+		float: none ;
+		clear: both ;
 		margin-left: 0;
 		margin-right: 0;
-		padding: 0;
+		padding: 10;
+	}
+	.bricks-wrapper .featured-grid {
+		width: 100%;
+	}
+	.bricks-wrapper .featured-grid {
+		width: 100%;
+	}
+	.entry-excerpt {
+		display: none;
 	}
 
 }
-
 
 /* ===================================================================
  *  13. footer - (_layout.scss)
@@ -2761,7 +2802,7 @@ footer ul li {
 }
 
 .blog-single .entry-meta .cat a {
-	margin-right: 5px;
+	margin: left 0.5rem; right: 0.5rem;
 }
 
 .blog-single .entry-meta .cat a:last-child {
@@ -2777,7 +2818,7 @@ footer ul li {
 }
 
 .blog-single .tags {
-	margin: 6rem 0 4.2rem;
+	margin: 0.5rem 0 0.5rem;
 }
 
 .blog-single .tags span {
@@ -2957,13 +2998,40 @@ footer ul li {
 	width: 6rem;
 }
 
-.commentlist li .avatar img {
+.avatar-depth-2 {
+	position: absolute;
+	left: 5%;
+	display: block;
+	height: 6rem;
+	width: 6rem;
+}
+
+.menu-avatar {
+	
+	display: block;
+	height: 6rem;
+	width: 6rem;
+}
+
+img.menu-avatar {
 	margin-top: 0.6rem;
 	height: 6rem;
 	width: 6rem;
 	border-radius: 100%;
 }
 
+.commentlist li .avatar img {
+	margin-top: 0.6rem;
+	height: 6rem;
+	width: 6rem;
+	border-radius: 100%;
+}
+.avatar-depth-2 img {
+	margin-top: 0.6rem;
+	height: 6rem;
+	width: 6rem;
+	border-radius: 100%;
+}
 .commentlist li .comment-info cite {
 	font-family: "montserrat-bold", sans-serif, HeiTi, "Microsoft JhengHei", SimHei, STHeiti;
 	font-weight: bold;
@@ -3037,12 +3105,12 @@ footer ul li {
 	}
 
 	.commentlist > li {
-		padding-left: 0;
+		padding-left: 75px;
 	}
 
-	.commentlist li .avatar {
+	/*.commentlist li .avatar {
 		display: none;
-	}
+	}*/
 
 }
 
@@ -3331,3 +3399,12 @@ footer ul li {
 #cForm {
 	margin-top: 3.6rem;
 }
+
+/*custcom
+*---------------------------------*/
+
+ul.main-navigation li.menu-li{
+	padding-top: 20px;
+}
+
+
