@@ -34,7 +34,7 @@ class HomePage(Page):
     content_panels = Page.content_panels + [
         FieldPanel("banner_title"),
         FieldPanel("banner_subtitle"),
-        ImageChooserPanel("banner_image"),
+        FieldPanel("banner_image"),
         PageChooserPanel("banner_cta"),
         FieldPanel("content")
     ]

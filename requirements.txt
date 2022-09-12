@@ -1,9 +1,9 @@
 Django>=4.0,<4.1
-wagtail>=2.16,<2.17
+wagtail>=4.0,<5.0
 django-notifications-hq==1.7.0
 django-ckeditor==6.2.0
 wagtail-markdown==0.8.0
-wagtailcodeblock==1.25.0.2
+wagtailcodeblock==1.28
 psycopg2-binary==2.9.3
 IP2Location==8.7.4
 notifications==0.3.2
