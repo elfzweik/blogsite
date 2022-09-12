@@ -185,7 +185,7 @@ class BlogCategory(models.Model):
 
     panels = [
         FieldPanel('name'),
-        ImageChooserPanel('icon'),
+        FieldPanel('icon'),
     ]
 
     def __str__(self):
@@ -303,7 +303,7 @@ class BlogDetailPage(Page):
         ], heading="Blog information"),
         
         # FieldPanel('body'),
-        StreamFieldPanel('content'),
+        FieldPanel('content'),
         
     ]
 
@@ -319,5 +319,5 @@ class BlogPageGalleryImage(Orderable):
     
 
     panels = [
-        ImageChooserPanel('image'),
+        FieldPanel('image'),
     ]
