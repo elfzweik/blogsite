@@ -1,14 +1,55 @@
-_pycache_/
-__pycache__/
-# static_collected/
+# Local database
 db.sqlite3
-# Windows:
+db.json
+
+# Windows
 Thumbs.db
 ehthumbs.db
 Desktop.ini
-.DS_Store
-.dockerignore
-.vscode
-media_collected/
 IP2LOCATION-LITE-DB11.IPV6.BIN
 IP2LOCATION-LITE-DB3.IPV6.BIN
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+mysite-env/
+venv/
+.env
+.env.*
+!.env.example
+
+# Django
+static_collected/
+media_collected/
+*.log
+
+# Runtime
+*.pid
+*.sock
+
+# Editor
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+.dockerignore
+
+# Backup
+*.dump
+*.sql
+*.tar
+*.tar.gz
+*.bak
+
+# Private configuration and credentials
+blogsite/settings/
+.my_pgpass
+.pg_service.conf
+load.test
+
+# Local data files
+visitor_record/data/IP2LOCATION-LITE-DB3.IPV6.BIN

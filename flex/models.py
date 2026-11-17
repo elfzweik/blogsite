@@ -15,6 +15,7 @@ class FlexPage(Page):
             ("full_richtext", blocks.FullRichTextBlock()),
             ("cards", blocks.CardBlock())
         ],
+        use_json_field=False,
         null= True,
         blank=True,
     )

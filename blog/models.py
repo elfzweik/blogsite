@@ -91,7 +91,7 @@ class BlogListingPage(Page):
     def serve(self, request):
         context = self.get_context(request)
         template = self.get_template(request)
-        
+
         response = render(request, template, context)
         response.set_cookie(context['cookie'], 'true', max_age=300)
         return response
@@ -116,7 +116,7 @@ class BlogTagIndexPage(Page):
         blogpages = BlogDetailPage.objects.filter(tags__name=tag).order_by('-first_published_at')
         paginator = Paginator(blogpages, 12)
         page_num = request.GET.get('page', 1)
-       
+
         try:
             blogpage = paginator.get_page(page_num)
         except PageNotAnInteger:
@@ -159,12 +159,16 @@ class BlogTagIndexPage(Page):
     def serve(self, request):
         context = self.get_context(request)
         template = self.get_template(request)
-        
+
         response = render(request, template, context)
         response.set_cookie(context['cookie'], 'true', max_age=300)
         return response
 
 class CustomStreamField(StreamField):
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('use_json_field', False)
+        super().__init__(*args, **kwargs)
+
     def get_prep_value(self, value):
         if isinstance(value, blocks.StreamValue) and not(value) and value.raw_text is not None:
             # An empty StreamValue with a nonempty raw_text attribute should have that
@@ -196,14 +200,14 @@ class BlogCategory(models.Model):
 
 class BlogDetailPage(Page):
     template = "blog/blog_detail_page.html"
-    
+
     def get_context(self, request):
 
         authorname=self.author.get_fullname_or_username()
         data = count_visits(request, self)
 
         context = super().get_context(request)
-        
+
         context['client_ip'] = data['client_ip']
         context['location'] = data['location']
         context['total_hits'] = data['total_hits']
@@ -211,15 +215,15 @@ class BlogDetailPage(Page):
         context['cookie'] = data['cookie']
         context['author']=authorname
         return context
-    
+
     def serve(self, request):
         context = self.get_context(request)
         template = self.get_template(request)
-        
+
         response = render(request, template, context)
         response.set_cookie(context['cookie'], 'true', max_age=300)
         return response
-        
+
 
     custom_title = models.CharField('Title', max_length=60, help_text='文章标题')
     author = models.ForeignKey(User,on_delete=models.PROTECT)
@@ -227,7 +231,7 @@ class BlogDetailPage(Page):
     update_date = models.DateField("Update date", auto_now=True)
     intro = models.CharField('Introduction', max_length=500, help_text='文章简介')
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
-    
+
     categories = ParentalManyToManyField('blog.BlogCategory', blank=True)
 
     content = CustomStreamField(
@@ -246,12 +250,12 @@ class BlogDetailPage(Page):
             ('equation', MathBlock(label='Equation')),
             ('code', CodeBlock(label='Code')),
             ('imagedeck', CardBlock(label='Imagedeck')), 
-            
+
         ],
         null=True,
         blank=True,
     )
-    
+
     def main_image(self):
         gallery_item = self.gallery_images.first()
         if gallery_item:
@@ -271,16 +275,16 @@ class BlogDetailPage(Page):
             return(self.get_prev_sibling())
         except self.DoesNotExist:
             return(None) 
-    
+
     def get_url(self):
         return self.url
-        
+
     def get_user(self):
         return self.author
 
     def get_email(self):
         return self.author.email
-    
+
 
     search_fields = Page.search_fields + [
         index.SearchField('custom_title'),
@@ -301,22 +305,22 @@ class BlogDetailPage(Page):
             FieldPanel('tags'),
             FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
         ], heading="Blog information"),
-        
+
         # FieldPanel('body'),
         FieldPanel('content'),
-        
+
     ]
 
     class Meta:
         ordering = ['-create_date']
 
-    
+
 class BlogPageGalleryImage(Orderable):
     page = ParentalKey(BlogDetailPage, on_delete=models.CASCADE, related_name='gallery_images')
     image = models.ForeignKey(
         'wagtailimages.Image', blank=False, on_delete=models.CASCADE, related_name='+'
     )
-    
+
 
     panels = [
         FieldPanel('image'),
